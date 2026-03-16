@@ -3,7 +3,7 @@ description: Sonar provides code quality and security analysis tools for develop
 image: https://www.sonarsource.com/assets/logo-sonar.svg
 url: https://www.sonarqube.org
 created: '2024'
-modified: '2024'
+modified: '2026-03-16'
 apis:
 - name: SonarQube Web API
   description: REST API for interacting with SonarQube server, including project analysis, quality gates, issues, and metrics
