@@ -1,69 +1,74 @@
 name: Sonar
-description: Sonar provides code quality and security analysis tools for developers, offering continuous inspection of code quality through static code analysis.
+description: Sonar provides code quality and security analysis tools for 
+  developers, offering continuous inspection of code quality through static code
+  analysis.
 image: https://www.sonarsource.com/assets/logo-sonar.svg
 url: https://www.sonarqube.org
 created: '2024'
 modified: '2026-03-16'
 apis:
-- name: SonarQube Web API
-  description: REST API for interacting with SonarQube server, including project analysis, quality gates, issues, and metrics
-  image: https://www.sonarsource.com/assets/logo-sonar.svg
-  humanURL: https://www.sonarqube.org
-  baseURL: https://sonarcloud.io/api
-  tags:
-  - Code Quality
-  - Static Analysis
-  - Security
-  - Technical Debt
-  - DevOps
-  properties:
-  - type: Documentation
-    url: https://docs.sonarqube.org/latest/extend/web-api/
-  - type: OpenAPI
-    url: https://sonarcloud.io/api/swagger.json
-  - type: Authentication
-    url: https://docs.sonarqube.org/latest/extend/web-api/#authentication
-- name: SonarCloud API
-  description: Cloud-based code quality and security service API for analyzing code repositories
-  image: https://www.sonarsource.com/assets/logo-sonar.svg
-  humanURL: https://sonarcloud.io
-  baseURL: https://sonarcloud.io/api
-  tags:
-  - Cloud
-  - Code Quality
-  - CI/CD
-  - GitHub
-  - GitLab
-  - Bitbucket
-  properties:
-  - type: Documentation
-    url: https://sonarcloud.io/web_api
-  - type: Getting Started
-    url: https://docs.sonarcloud.io/
-  - type: Authentication
-    url: https://docs.sonarcloud.io/advanced-setup/api-authentication/
+  - name: SonarQube Web API
+    description: >-
+      REST API for interacting with SonarQube server, including project analysis,
+      quality gates, issues, and metrics.
+    image: https://www.sonarsource.com/assets/logo-sonar.svg
+    humanURL: https://www.sonarqube.org
+    baseURL: https://sonarcloud.io/api
+    tags:
+      - Code Quality
+      - Static Analysis
+      - Security
+      - Technical Debt
+      - DevOps
+    properties:
+      - type: Documentation
+        url: https://docs.sonarqube.org/latest/extend/web-api/
+      - type: OpenAPI
+        url: https://sonarcloud.io/api/swagger.json
+      - type: Authentication
+        url: https://docs.sonarqube.org/latest/extend/web-api/#authentication
+  - name: SonarCloud API
+    description: >-
+      Cloud-based code quality and security service API for analyzing code repositories.
+    image: https://www.sonarsource.com/assets/logo-sonar.svg
+    humanURL: https://sonarcloud.io
+    baseURL: https://sonarcloud.io/api
+    tags:
+      - Cloud
+      - Code Quality
+      - CI/CD
+      - GitHub
+      - GitLab
+      - Bitbucket
+    properties:
+      - type: Documentation
+        url: https://sonarcloud.io/web_api
+      - type: Getting Started
+        url: https://docs.sonarcloud.io/
+      - type: Authentication
+        url: https://docs.sonarcloud.io/advanced-setup/api-authentication/
 common:
-- type: Blog
-  url: https://www.sonarsource.com/blog/
-- type: GitHub Organization
-  url: https://github.com/SonarSource
-- type: Support
-  url: https://community.sonarsource.com/
-- type: Status
-  url: https://status.sonarsource.com/
-- type: Pricing
-  url: https://www.sonarsource.com/plans-and-pricing/
-- type: Terms of Service
-  url: https://www.sonarsource.com/terms/
-- type: Privacy Policy
-  url: https://www.sonarsource.com/privacy/
+  - type: Blog
+    url: https://www.sonarsource.com/blog/
+  - type: GitHub Organization
+    url: https://github.com/SonarSource
+  - type: Support
+    url: https://community.sonarsource.com/
+  - type: Status
+    url: https://status.sonarsource.com/
+  - type: Pricing
+    url: https://www.sonarsource.com/plans-and-pricing/
+  - type: Terms of Service
+    url: https://www.sonarsource.com/terms/
+  - type: Privacy Policy
+    url: https://www.sonarsource.com/privacy/
 maintainers:
-- name: SonarSource
-  email: contact@sonarsource.com
-  url: https://www.sonarsource.com
+  - name: SonarSource
+    email: contact@sonarsource.com
+    url: https://www.sonarsource.com
 tags:
-- Code Quality
-- Security
-- Static Analysis
-- DevOps
-- Continuous Integration
+  - Code Quality
+  - Security
+  - Static Analysis
+  - DevOps
+  - Continuous Integration
