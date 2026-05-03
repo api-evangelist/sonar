@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/sonar/main/json-schema/sonar-issue-schema.json",
+  "title": "Issue",
+  "description": "A SonarCloud code issue (bug, vulnerability, code smell, or security hotspot) detected in a project's source code.",
+  "type": "object",
+  "properties": {
+    "key": { "type": "string", "description": "Unique issue key" },
+    "rule": { "type": "string", "description": "Rule key (e.g., java:S1234)" },
+    "severity": { "type": "string", "enum": ["INFO", "MINOR", "MAJOR", "CRITICAL", "BLOCKER"] },
+    "component": { "type": "string", "description": "Component key (file)" },
+    "project": { "type": "string", "description": "Project key" },
+    "organization": { "type": "string", "description": "Organization key" },
+    "line": { "type": "integer" },
+    "status": { "type": "string", "enum": ["OPEN", "CONFIRMED", "REOPENED", "RESOLVED", "CLOSED"] },
+    "resolution": { "type": "string", "enum": ["FIXED", "FALSE-POSITIVE", "WONTFIX", "REMOVED"] },
+    "type": { "type": "string", "enum": ["CODE_SMELL", "BUG", "VULNERABILITY", "SECURITY_HOTSPOT"] },
+    "message": { "type": "string", "description": "Issue description" },
+    "author": { "type": "string", "description": "SCM author" },
+    "assignee": { "type": "string", "description": "Assigned user login" },
+    "creationDate": { "type": "string", "format": "date-time" },
+    "updateDate": { "type": "string", "format": "date-time" },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "effort": { "type": "string", "description": "Remediation effort estimate" }
+  },
+  "required": ["key", "rule", "type", "status"]
+}

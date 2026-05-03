@@ -1,0 +1,204 @@
+vocabulary:
+  name: Sonar Vocabulary
+  description: >-
+    Domain vocabulary for Sonar (SonarSource) covering SonarQube Server and
+    SonarCloud products, code quality analysis concepts, CI/CD integration,
+    DevOps platform connectivity, and the Clean Code philosophy.
+  created: "2026-05-02"
+  modified: "2026-05-02"
+  tags:
+    - CI/CD
+    - Code Quality
+    - DevOps
+    - Security
+    - Sonar
+    - SonarCloud
+    - SonarQube
+
+  terms:
+
+    - term: SonarSource
+      category: Company
+      definition: >-
+        The company behind SonarQube, SonarCloud, and SonarLint. SonarSource
+        develops static analysis tools for code quality and security across
+        30+ programming languages.
+      relatedTerms:
+        - SonarQube
+        - SonarCloud
+        - SonarLint
+
+    - term: SonarQube
+      category: Product
+      definition: >-
+        Self-hosted code quality and security platform from SonarSource.
+        Available in Community, Developer, Enterprise, and Data Center editions.
+        Provides Web API for CI/CD integration and programmatic management.
+      relatedTerms:
+        - SonarCloud
+        - SonarScanner
+        - Quality Gate
+
+    - term: SonarCloud
+      category: Product
+      definition: >-
+        The cloud-hosted version of SonarSource's code quality platform,
+        integrated natively with GitHub, GitLab, Bitbucket, and Azure DevOps.
+        Free for open-source projects; paid for private repositories.
+      relatedTerms:
+        - SonarQube
+        - Organization
+        - DevOps Platform
+
+    - term: SonarLint
+      category: Product
+      definition: >-
+        IDE plugin from SonarSource that runs code quality analysis locally
+        in real time within VS Code, IntelliJ IDEA, Eclipse, and other IDEs.
+        Can connect to SonarQube or SonarCloud for synchronized rule sets.
+      relatedTerms:
+        - SonarQube
+        - SonarCloud
+
+    - term: Organization
+      category: SonarCloud Concept
+      definition: >-
+        The top-level entity in SonarCloud, corresponding to a DevOps platform
+        account or organization (GitHub org, GitLab group, Bitbucket workspace,
+        or Azure DevOps organization). Projects are grouped within organizations.
+      relatedTerms:
+        - Project
+        - SonarCloud
+        - DevOps Platform
+
+    - term: DevOps Platform
+      category: Integration
+      definition: >-
+        A connected source control and CI/CD platform. Sonar products integrate
+        natively with GitHub, GitLab, Bitbucket Cloud/Server, and Azure DevOps
+        for automatic analysis on pull requests and branch pushes.
+      relatedTerms:
+        - Organization
+        - Pull Request Analysis
+        - SonarCloud
+
+    - term: Pull Request Analysis
+      category: CI/CD
+      definition: >-
+        Automatic SonarCloud analysis triggered on pull requests in connected
+        DevOps platforms. Results appear as inline comments and a quality gate
+        check on the PR, helping developers fix issues before merge.
+      relatedTerms:
+        - Quality Gate
+        - DevOps Platform
+        - New Code Period
+
+    - term: Clean Code
+      category: Philosophy
+      definition: >-
+        SonarSource's software quality framework emphasizing that code should
+        be consistent, intentional, adaptable, and responsible. The Sonar way
+        quality gate enforces Clean Code by focusing on new code quality.
+      relatedTerms:
+        - Quality Gate
+        - New Code Period
+        - Technical Debt
+
+    - term: New Code Period
+      category: Configuration
+      definition: >-
+        The defined time window for what counts as "new code" in quality gate
+        evaluation. Options include: previous version, number of days, reference
+        branch, or a specific date. Best practice is "previous version."
+      relatedTerms:
+        - Quality Gate
+        - Clean Code
+
+    - term: Quality Gate
+      category: Core Concept
+      definition: >-
+        A set of conditions a project must meet on new code to pass analysis.
+        The built-in "Sonar way" gate requires: A rating on new reliability and
+        security, 80% coverage on new code, 0% duplication on new code,
+        100% security hotspots reviewed.
+      relatedTerms:
+        - Quality Gate Condition
+        - Clean Code
+        - New Code Period
+
+    - term: Sonar Way
+      category: Built-in Configuration
+      definition: >-
+        The default quality gate and quality profile maintained by SonarSource.
+        Sonar Way implements the Clean Code standard and is updated with each
+        SonarQube/SonarCloud version. Recommended for all new projects.
+      relatedTerms:
+        - Quality Gate
+        - Quality Profile
+
+    - term: Issue
+      category: Analysis Output
+      definition: >-
+        A code problem detected by analysis. Issues include Bugs (runtime
+        defects), Vulnerabilities (security weaknesses), Code Smells
+        (maintainability problems), and Security Hotspots (code requiring
+        manual review). Each has a severity and remediation guidance.
+      relatedTerms:
+        - Bug
+        - Vulnerability
+        - Code Smell
+        - Security Hotspot
+
+    - term: Measure
+      category: Analysis Output
+      definition: >-
+        A numeric metric value computed from analysis results and stored per
+        component. Examples: coverage (73.4), bugs (3), vulnerabilities (1),
+        duplicated_lines_density (2.1), ncloc (12453), sqale_rating (A).
+      relatedTerms:
+        - Metric
+        - Component
+
+    - term: SonarScanner
+      category: Tooling
+      definition: >-
+        The analysis scanner that processes source code and sends results to
+        SonarQube or SonarCloud. Available as SonarScanner CLI, Maven plugin,
+        Gradle plugin, .NET scanner, and integrated with GitHub Actions,
+        Jenkins, GitLab CI, Azure DevOps, and Bitbucket Pipelines.
+      relatedTerms:
+        - SonarQube
+        - SonarCloud
+        - CI/CD
+
+    - term: User Token
+      category: Authentication
+      definition: >-
+        An API authentication credential generated in SonarCloud or SonarQube
+        account settings. Tokens are passed as Bearer tokens or as basic auth
+        usernames. Project analysis tokens, user tokens, and global analysis
+        tokens provide different scopes of access.
+      relatedTerms:
+        - SonarCloud
+        - SonarQube
+
+    - term: Severity
+      category: Classification
+      definition: >-
+        The impact level of an issue: Blocker, Critical, Major, Minor, Info.
+        Note: Sonar is transitioning to a new "Clean Code" taxonomy that uses
+        impact (High/Medium/Low) and software quality (Reliability/Security/
+        Maintainability) instead of traditional severity levels.
+      relatedTerms:
+        - Issue
+        - Quality Gate
+
+    - term: Technical Debt
+      category: Metric
+      definition: >-
+        The estimated time required to fix all Code Smells, expressed as a
+        duration (e.g., 5d 3h). Drives the SQALE Maintainability Rating.
+        SonarCloud provides technical debt tracking per project and over time.
+      relatedTerms:
+        - Code Smell
+        - Maintainability Rating

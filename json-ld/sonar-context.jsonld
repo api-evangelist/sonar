@@ -1,0 +1,65 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "sonar": "https://docs.sonarsource.com/sonarcloud/vocabulary/",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Organization": {
+      "@id": "schema:Organization",
+      "@context": {
+        "key": "@id",
+        "name": "schema:name",
+        "visibility": "schema:accessMode",
+        "alm": "sonar:connectedAlm"
+      }
+    },
+
+    "Project": {
+      "@id": "schema:SoftwareSourceCode",
+      "@context": {
+        "key": "@id",
+        "name": "schema:name",
+        "lastAnalysisDate": "schema:dateModified",
+        "organization": "schema:memberOf",
+        "visibility": "schema:accessMode"
+      }
+    },
+
+    "Issue": {
+      "@id": "schema:Action",
+      "@context": {
+        "key": "@id",
+        "rule": "sonar:rule",
+        "severity": "sonar:severity",
+        "type": "sonar:issueType",
+        "status": "sonar:issueStatus",
+        "resolution": "sonar:resolution",
+        "message": "schema:description",
+        "organization": "schema:memberOf",
+        "component": "sonar:component",
+        "creationDate": "schema:dateCreated",
+        "effort": "sonar:effort"
+      }
+    },
+
+    "QualityGate": {
+      "@id": "sonar:QualityGate",
+      "@context": {
+        "id": "@id",
+        "name": "schema:name",
+        "isDefault": "sonar:isDefault",
+        "conditions": "sonar:conditions"
+      }
+    },
+
+    "UserToken": {
+      "@id": "schema:DigitalDocument",
+      "@context": {
+        "login": "schema:identifier",
+        "name": "schema:name",
+        "createdAt": "schema:dateCreated"
+      }
+    }
+  }
+}

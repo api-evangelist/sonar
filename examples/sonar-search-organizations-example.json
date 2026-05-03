@@ -1,0 +1,31 @@
+{
+  "paging": {
+    "pageIndex": 1,
+    "pageSize": 25,
+    "total": 2
+  },
+  "organizations": [
+    {
+      "key": "my-github-org",
+      "name": "My GitHub Organization",
+      "guarded": false,
+      "visibility": "public",
+      "subscription": "PAID",
+      "alm": {
+        "key": "github",
+        "url": "https://github.com/my-github-org"
+      }
+    },
+    {
+      "key": "my-personal-org",
+      "name": "My Personal Account",
+      "guarded": false,
+      "visibility": "private",
+      "subscription": "FREE",
+      "alm": {
+        "key": "github",
+        "url": "https://github.com/my-username"
+      }
+    }
+  ]
+}

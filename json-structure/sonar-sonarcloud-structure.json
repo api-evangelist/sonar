@@ -1,0 +1,66 @@
+{
+  "name": "SonarCloud API Structure",
+  "description": "JSON structure documentation for the SonarCloud API core data entities",
+  "resources": [
+    {
+      "name": "Organization",
+      "description": "SonarCloud top-level entity grouping projects from a DevOps platform",
+      "fields": [
+        { "name": "key", "type": "string", "required": true, "description": "Unique organization key" },
+        { "name": "name", "type": "string", "required": true, "description": "Display name" },
+        { "name": "visibility", "type": "string", "enum": ["public", "private"], "required": false },
+        { "name": "subscription", "type": "string", "enum": ["FREE", "PAID"], "required": false },
+        { "name": "alm", "type": "object", "required": false, "description": "Connected DevOps platform (github/gitlab/bitbucket/azure)" }
+      ]
+    },
+    {
+      "name": "Project",
+      "description": "A source code project analyzed by SonarCloud",
+      "fields": [
+        { "name": "key", "type": "string", "required": true },
+        { "name": "name", "type": "string", "required": true },
+        { "name": "qualifier", "type": "string", "enum": ["TRK", "APP", "VW"], "required": false },
+        { "name": "visibility", "type": "string", "enum": ["public", "private"], "required": false },
+        { "name": "lastAnalysisDate", "type": "string", "format": "date-time", "required": false },
+        { "name": "organization", "type": "string", "required": false }
+      ]
+    },
+    {
+      "name": "Issue",
+      "description": "Code issue detected during analysis",
+      "fields": [
+        { "name": "key", "type": "string", "required": true },
+        { "name": "rule", "type": "string", "required": true },
+        { "name": "severity", "type": "string", "enum": ["INFO", "MINOR", "MAJOR", "CRITICAL", "BLOCKER"], "required": false },
+        { "name": "type", "type": "string", "enum": ["CODE_SMELL", "BUG", "VULNERABILITY", "SECURITY_HOTSPOT"], "required": true },
+        { "name": "status", "type": "string", "enum": ["OPEN", "CONFIRMED", "REOPENED", "RESOLVED", "CLOSED"], "required": true },
+        { "name": "organization", "type": "string", "required": false },
+        { "name": "component", "type": "string", "required": false },
+        { "name": "line", "type": "integer", "required": false },
+        { "name": "message", "type": "string", "required": false },
+        { "name": "effort", "type": "string", "required": false }
+      ]
+    },
+    {
+      "name": "QualityGate",
+      "description": "Quality criteria definition",
+      "fields": [
+        { "name": "id", "type": "string", "required": true },
+        { "name": "name", "type": "string", "required": true },
+        { "name": "isDefault", "type": "boolean", "required": false },
+        { "name": "isBuiltIn", "type": "boolean", "required": false },
+        { "name": "conditions", "type": "array", "items": "QualityGateCondition", "required": false }
+      ]
+    },
+    {
+      "name": "UserToken",
+      "description": "API authentication token for SonarCloud",
+      "fields": [
+        { "name": "login", "type": "string", "required": false },
+        { "name": "name", "type": "string", "required": false },
+        { "name": "token", "type": "string", "required": false, "description": "Only returned at generation time" },
+        { "name": "createdAt", "type": "string", "format": "date-time", "required": false }
+      ]
+    }
+  ]
+}

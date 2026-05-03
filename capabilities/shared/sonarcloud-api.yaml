@@ -1,0 +1,405 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "SonarCloud API"
+  description: >-
+    Cloud-based code quality and security analysis API from Sonar. Manages
+    organizations, projects, issues, quality gates, and user tokens. Integrates
+    with GitHub, GitLab, Bitbucket, and Azure DevOps for automated analysis.
+  tags:
+    - Cloud
+    - Code Quality
+    - DevOps
+    - Security
+    - Sonar
+    - SonarCloud
+    - Static Analysis
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SONARCLOUD_TOKEN: SONARCLOUD_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: sonarcloud
+      baseUri: https://sonarcloud.io/api
+      description: "SonarCloud API for cloud-based code quality and security analysis"
+      authentication:
+        type: bearer
+        token: "{{SONARCLOUD_TOKEN}}"
+      resources:
+        - name: organizations
+          path: /organizations/search
+          description: "Organization discovery and management"
+          operations:
+            - name: search-organizations
+              method: GET
+              description: "Search for SonarCloud organizations"
+              inputParameters:
+                - name: q
+                  in: query
+                  type: string
+                  required: false
+                - name: p
+                  in: query
+                  type: integer
+                  required: false
+                - name: ps
+                  in: query
+                  type: integer
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: projects
+          path: /projects/search
+          description: "Project search within organizations"
+          operations:
+            - name: search-projects
+              method: GET
+              description: "Search for projects in an organization"
+              inputParameters:
+                - name: organization
+                  in: query
+                  type: string
+                  required: true
+                - name: q
+                  in: query
+                  type: string
+                  required: false
+                - name: p
+                  in: query
+                  type: integer
+                  required: false
+                - name: ps
+                  in: query
+                  type: integer
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: issues
+          path: /issues/search
+          description: "Code issue search and management"
+          operations:
+            - name: search-issues
+              method: GET
+              description: "Search for code issues in an organization or project"
+              inputParameters:
+                - name: organization
+                  in: query
+                  type: string
+                  required: false
+                - name: componentKeys
+                  in: query
+                  type: string
+                  required: false
+                - name: severities
+                  in: query
+                  type: string
+                  required: false
+                - name: types
+                  in: query
+                  type: string
+                  required: false
+                - name: statuses
+                  in: query
+                  type: string
+                  required: false
+                - name: p
+                  in: query
+                  type: integer
+                  required: false
+                - name: ps
+                  in: query
+                  type: integer
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: quality-gates
+          path: /qualitygates
+          description: "Quality gate management"
+          operations:
+            - name: list-quality-gates
+              method: GET
+              description: "List quality gates for an organization"
+              inputParameters:
+                - name: organization
+                  in: query
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: get-quality-gate-status
+              method: GET
+              description: "Get quality gate pass/fail status for a project"
+              inputParameters:
+                - name: projectKey
+                  in: query
+                  type: string
+                  required: false
+                - name: branch
+                  in: query
+                  type: string
+                  required: false
+                - name: pullRequest
+                  in: query
+                  type: string
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: measures
+          path: /measures/component
+          description: "Component metrics and measurements"
+          operations:
+            - name: get-component-measures
+              method: GET
+              description: "Get code metrics for a project component"
+              inputParameters:
+                - name: component
+                  in: query
+                  type: string
+                  required: true
+                - name: metricKeys
+                  in: query
+                  type: string
+                  required: true
+                - name: branch
+                  in: query
+                  type: string
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: user-tokens
+          path: /user_tokens
+          description: "API token management"
+          operations:
+            - name: search-user-tokens
+              method: GET
+              description: "List API tokens for the authenticated user"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: generate-user-token
+              method: POST
+              description: "Generate a new API token"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  organizationKey: "{{tools.organizationKey}}"
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: sonarcloud-rest
+      resources:
+        - path: /v1/organizations
+          name: organizations
+          description: "Organization search"
+          operations:
+            - method: GET
+              name: search-organizations
+              description: "Search organizations"
+              call: "sonarcloud.search-organizations"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/projects
+          name: projects
+          description: "Project search"
+          operations:
+            - method: GET
+              name: search-projects
+              description: "Search projects"
+              call: "sonarcloud.search-projects"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/issues
+          name: issues
+          description: "Issue search"
+          operations:
+            - method: GET
+              name: search-issues
+              description: "Search issues"
+              call: "sonarcloud.search-issues"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/quality-gates
+          name: quality-gates
+          description: "Quality gates"
+          operations:
+            - method: GET
+              name: list-quality-gates
+              description: "List quality gates"
+              call: "sonarcloud.list-quality-gates"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/quality-gate-status
+          name: quality-gate-status
+          description: "Quality gate status"
+          operations:
+            - method: GET
+              name: get-quality-gate-status
+              description: "Get quality gate status"
+              call: "sonarcloud.get-quality-gate-status"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/measures
+          name: measures
+          description: "Component measures"
+          operations:
+            - method: GET
+              name: get-component-measures
+              description: "Get component metrics"
+              call: "sonarcloud.get-component-measures"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: sonarcloud-mcp
+      transport: http
+      tools:
+        - name: search-organizations
+          description: "Search for SonarCloud organizations by name or key"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sonarcloud.search-organizations"
+          with:
+            q: "tools.q"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: search-projects
+          description: "Search for projects in a SonarCloud organization"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sonarcloud.search-projects"
+          with:
+            organization: "tools.organization"
+            q: "tools.q"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: search-issues
+          description: "Search for code issues in a SonarCloud project or organization"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sonarcloud.search-issues"
+          with:
+            organization: "tools.organization"
+            componentKeys: "tools.componentKeys"
+            severities: "tools.severities"
+            types: "tools.types"
+            statuses: "tools.statuses"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-quality-gates
+          description: "List all quality gates for a SonarCloud organization"
+          hints:
+            readOnly: true
+          call: "sonarcloud.list-quality-gates"
+          with:
+            organization: "tools.organization"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-quality-gate-status
+          description: "Get quality gate pass/fail status for a SonarCloud project"
+          hints:
+            readOnly: true
+          call: "sonarcloud.get-quality-gate-status"
+          with:
+            projectKey: "tools.projectKey"
+            branch: "tools.branch"
+            pullRequest: "tools.pullRequest"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-component-measures
+          description: "Get code quality metrics for a SonarCloud project"
+          hints:
+            readOnly: true
+          call: "sonarcloud.get-component-measures"
+          with:
+            component: "tools.component"
+            metricKeys: "tools.metricKeys"
+            branch: "tools.branch"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: search-user-tokens
+          description: "List API tokens for the authenticated SonarCloud user"
+          hints:
+            readOnly: true
+          call: "sonarcloud.search-user-tokens"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: generate-user-token
+          description: "Generate a new SonarCloud API token for authentication"
+          hints:
+            readOnly: false
+          call: "sonarcloud.generate-user-token"
+          with:
+            name: "tools.name"
+            organizationKey: "tools.organizationKey"
+          outputParameters:
+            - type: object
+              mapping: "$."

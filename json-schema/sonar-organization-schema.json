@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/sonar/main/json-schema/sonar-organization-schema.json",
+  "title": "Organization",
+  "description": "A SonarCloud organization, the top-level entity grouping projects from a connected DevOps platform (GitHub, GitLab, Bitbucket, or Azure DevOps).",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Unique organization key"
+    },
+    "name": {
+      "type": "string",
+      "description": "Organization display name"
+    },
+    "guarded": {
+      "type": "boolean",
+      "description": "Whether the organization is protected from deletion"
+    },
+    "visibility": {
+      "type": "string",
+      "enum": ["public", "private"],
+      "description": "Organization visibility"
+    },
+    "subscription": {
+      "type": "string",
+      "enum": ["FREE", "PAID"],
+      "description": "Subscription tier"
+    },
+    "alm": {
+      "type": "object",
+      "description": "Connected DevOps platform (ALM) configuration",
+      "properties": {
+        "key": {
+          "type": "string",
+          "enum": ["github", "gitlab", "bitbucket", "azure"],
+          "description": "DevOps platform identifier"
+        },
+        "url": {
+          "type": "string",
+          "description": "Platform URL"
+        }
+      }
+    }
+  },
+  "required": ["key", "name"]
+}

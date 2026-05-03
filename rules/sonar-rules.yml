@@ -1,0 +1,74 @@
+rules:
+  sonar-operation-summary-title-case:
+    description: All operation summaries must use Title Case
+    message: Operation summary "{{value}}" must use Title Case
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-z]*(\\s[A-Z][a-z]*)*$"
+
+  sonar-operation-id-required:
+    description: All operations must have an operationId
+    message: Operation must have an operationId
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  sonar-tags-required:
+    description: All operations must have tags
+    message: Operation must have at least one tag
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  sonar-organization-param-required:
+    description: SonarCloud organization-scoped endpoints should include organization parameter
+    message: Organization-scoped endpoints should include an 'organization' parameter
+    severity: info
+    given: "$.paths[*].get.parameters[*].name"
+    then:
+      function: enumeration
+      functionOptions:
+        values: [organization, organizationKey, project, component, componentKeys, q, p, ps, branch, pullRequest]
+
+  sonar-200-get-response:
+    description: GET operations must define 200 response
+    message: GET operation must have a 200 response
+    severity: error
+    given: "$.paths[*].get.responses"
+    then:
+      field: "200"
+      function: truthy
+
+  sonar-bearer-auth:
+    description: All protected endpoints must use bearerAuth security scheme
+    message: Protected operation should define bearerAuth security
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: security
+      function: truthy
+
+  sonar-response-schema:
+    description: Successful GET responses must include schemas
+    message: Response 200 must include a content schema
+    severity: warn
+    given: "$.paths[*].get.responses[200].content"
+    then:
+      function: truthy
+
+  sonar-pagination-support:
+    description: Search/list endpoints should support standard p and ps pagination
+    message: Search endpoints should include 'p' and 'ps' query parameters
+    severity: info
+    given: "$.paths[*search*].get.parameters[*].name"
+    then:
+      function: enumeration
+      functionOptions:
+        values: [q, p, ps, organization, filter]

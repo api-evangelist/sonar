@@ -1,0 +1,229 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Sonar Cloud Code Quality"
+  description: >-
+    Unified workflow capability for AI-assisted code quality analysis using
+    SonarCloud. Enables AI agents to audit projects across an organization,
+    detect security vulnerabilities and bugs, check quality gate status for
+    CI/CD decisions, and retrieve code metrics for engineering reporting.
+    Serves developers, security engineers, and engineering managers using
+    SonarCloud with GitHub, GitLab, Bitbucket, or Azure DevOps.
+  tags:
+    - CI/CD
+    - Cloud
+    - Code Quality
+    - DevOps
+    - Security
+    - Sonar
+    - SonarCloud
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SONARCLOUD_TOKEN: SONARCLOUD_TOKEN
+
+capability:
+  consumes:
+    - import: sonarcloud
+      location: ./shared/sonarcloud-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: sonar-cloud-quality-api
+      description: "Unified REST API for Sonar cloud-based code quality workflows."
+      resources:
+        - path: /v1/organizations
+          name: organizations
+          description: "Organization discovery"
+          operations:
+            - method: GET
+              name: search-organizations
+              description: "Search for SonarCloud organizations"
+              call: "sonarcloud.search-organizations"
+              with:
+                q: "rest.q"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/projects
+          name: projects
+          description: "Project discovery"
+          operations:
+            - method: GET
+              name: search-projects
+              description: "Search projects in an organization"
+              call: "sonarcloud.search-projects"
+              with:
+                organization: "rest.organization"
+                q: "rest.q"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/issues
+          name: issues
+          description: "Code issues"
+          operations:
+            - method: GET
+              name: search-issues
+              description: "Search code issues"
+              call: "sonarcloud.search-issues"
+              with:
+                organization: "rest.organization"
+                componentKeys: "rest.componentKeys"
+                severities: "rest.severities"
+                types: "rest.types"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/quality-gate-status
+          name: quality-gate-status
+          description: "Quality gate results for CI/CD"
+          operations:
+            - method: GET
+              name: get-quality-gate-status
+              description: "Check if a project passes its quality gate"
+              call: "sonarcloud.get-quality-gate-status"
+              with:
+                projectKey: "rest.projectKey"
+                branch: "rest.branch"
+                pullRequest: "rest.pullRequest"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/measures
+          name: measures
+          description: "Code quality metrics"
+          operations:
+            - method: GET
+              name: get-component-measures
+              description: "Get project code quality metrics"
+              call: "sonarcloud.get-component-measures"
+              with:
+                component: "rest.component"
+                metricKeys: "rest.metricKeys"
+                branch: "rest.branch"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: sonar-cloud-quality-mcp
+      transport: http
+      description: "MCP server for AI-assisted Sonar cloud code quality analysis and CI/CD governance."
+      tools:
+        - name: search-organizations
+          description: "Discover SonarCloud organizations connected to DevOps platforms"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sonarcloud.search-organizations"
+          with:
+            q: "tools.q"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: search-projects
+          description: "Search for projects in a SonarCloud organization to audit or monitor"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sonarcloud.search-projects"
+          with:
+            organization: "tools.organization"
+            q: "tools.q"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: find-security-issues
+          description: "Find security vulnerabilities and hotspots in a SonarCloud project"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sonarcloud.search-issues"
+          with:
+            organization: "tools.organization"
+            componentKeys: "tools.projectKey"
+            types: "VULNERABILITY,SECURITY_HOTSPOT"
+            statuses: "OPEN,CONFIRMED,REOPENED"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: find-bugs
+          description: "Find reliability bugs in a SonarCloud project"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sonarcloud.search-issues"
+          with:
+            organization: "tools.organization"
+            componentKeys: "tools.projectKey"
+            types: "BUG"
+            statuses: "OPEN,CONFIRMED,REOPENED"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: search-issues
+          description: "Search all code issues with full filtering (severity, type, status, rule)"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sonarcloud.search-issues"
+          with:
+            organization: "tools.organization"
+            componentKeys: "tools.componentKeys"
+            severities: "tools.severities"
+            types: "tools.types"
+            statuses: "tools.statuses"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: check-quality-gate
+          description: "Check if a project passes its quality gate — required for CI/CD release decisions"
+          hints:
+            readOnly: true
+          call: "sonarcloud.get-quality-gate-status"
+          with:
+            projectKey: "tools.projectKey"
+            branch: "tools.branch"
+            pullRequest: "tools.pullRequest"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-quality-gates
+          description: "List quality gate definitions for a SonarCloud organization"
+          hints:
+            readOnly: true
+          call: "sonarcloud.list-quality-gates"
+          with:
+            organization: "tools.organization"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-code-metrics
+          description: "Get code quality metrics for a project: coverage, bugs, vulnerabilities, code smells"
+          hints:
+            readOnly: true
+          call: "sonarcloud.get-component-measures"
+          with:
+            component: "tools.projectKey"
+            metricKeys: "tools.metricKeys"
+            branch: "tools.branch"
+          outputParameters:
+            - type: object
+              mapping: "$."
