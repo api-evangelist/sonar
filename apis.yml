@@ -112,6 +112,13 @@ common:
   - type: Vocabulary
     url: vocabulary/sonar-vocabulary.yml
     title: Sonar Vocabulary
+  - type: Integrations
+    url: https://www.sonarsource.com/integrations/
+integrations:
+  - name: GitHub
+  - name: Bitbucket
+  - name: Azure DevOps
+  - name: GitLab
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
