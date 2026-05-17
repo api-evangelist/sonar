@@ -5,7 +5,7 @@ description: >-
   developers. Products include SonarQube (self-hosted), SonarCloud (cloud-hosted),
   and SonarLint (IDE plugin), offering continuous inspection through static code
   analysis across 30+ programming languages.
-type: Contract
+kind: contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - CI/CD
@@ -98,7 +98,7 @@ common:
     url: https://github.com/SonarSource
   - type: Support
     url: https://community.sonarsource.com/
-  - type: Status
+  - type: StatusPage
     url: https://status.sonarsource.com/
   - type: Pricing
     url: https://www.sonarsource.com/plans-and-pricing/
