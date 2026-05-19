@@ -1,0 +1,127 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SonarCloud API — Issues
+  description: 'SonarCloud API — Issues. 1 operations. Lead operation: Search Issues. Self-contained Naftiko capability covering
+    one Sonar business surface.'
+  tags:
+  - Sonar
+  - Issues
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONAR_API_KEY: SONAR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: sonarcloud-issues
+    baseUri: https://sonarcloud.io/api
+    description: SonarCloud API — Issues business capability. Self-contained, no shared references.
+    resources:
+    - name: issues-search
+      path: /issues/search
+      operations:
+      - name: searchissues
+        method: GET
+        description: Search Issues
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: organization
+          in: query
+          type: string
+          description: Organization key to scope the search
+        - name: componentKeys
+          in: query
+          type: string
+          description: Comma-separated component keys to scope the search
+        - name: severities
+          in: query
+          type: string
+          description: Comma-separated severities
+        - name: types
+          in: query
+          type: string
+          description: Comma-separated issue types
+        - name: statuses
+          in: query
+          type: string
+          description: Comma-separated statuses
+        - name: resolved
+          in: query
+          type: boolean
+          description: Filter by resolution status
+        - name: rules
+          in: query
+          type: string
+          description: Comma-separated rule keys
+        - name: p
+          in: query
+          type: integer
+          description: Page number
+        - name: ps
+          in: query
+          type: integer
+          description: Page size
+    authentication:
+      type: bearer
+      token: '{{env.SONAR_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: sonarcloud-issues-rest
+    port: 8080
+    description: REST adapter for SonarCloud API — Issues. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/issues/search
+      name: issues-search
+      description: REST surface for issues-search.
+      operations:
+      - method: GET
+        name: searchissues
+        description: Search Issues
+        call: sonarcloud-issues.searchissues
+        with:
+          organization: rest.organization
+          componentKeys: rest.componentKeys
+          severities: rest.severities
+          types: rest.types
+          statuses: rest.statuses
+          resolved: rest.resolved
+          rules: rest.rules
+          p: rest.p
+          ps: rest.ps
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: sonarcloud-issues-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SonarCloud API — Issues. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: search-issues
+      description: Search Issues
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sonarcloud-issues.searchissues
+      with:
+        organization: tools.organization
+        componentKeys: tools.componentKeys
+        severities: tools.severities
+        types: tools.types
+        statuses: tools.statuses
+        resolved: tools.resolved
+        rules: tools.rules
+        p: tools.p
+        ps: tools.ps
+      outputParameters:
+      - type: object
+        mapping: $.

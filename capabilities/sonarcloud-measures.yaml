@@ -1,0 +1,99 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SonarCloud API — Measures
+  description: 'SonarCloud API — Measures. 1 operations. Lead operation: Get Component Measures. Self-contained Naftiko capability
+    covering one Sonar business surface.'
+  tags:
+  - Sonar
+  - Measures
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONAR_API_KEY: SONAR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: sonarcloud-measures
+    baseUri: https://sonarcloud.io/api
+    description: SonarCloud API — Measures business capability. Self-contained, no shared references.
+    resources:
+    - name: measures-component
+      path: /measures/component
+      operations:
+      - name: getcomponentmeasures
+        method: GET
+        description: Get Component Measures
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: component
+          in: query
+          type: string
+          description: Component key
+          required: true
+        - name: metricKeys
+          in: query
+          type: string
+          description: Comma-separated metric keys
+          required: true
+        - name: branch
+          in: query
+          type: string
+          description: Branch name
+        - name: pullRequest
+          in: query
+          type: string
+          description: Pull request number
+    authentication:
+      type: bearer
+      token: '{{env.SONAR_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: sonarcloud-measures-rest
+    port: 8080
+    description: REST adapter for SonarCloud API — Measures. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/measures/component
+      name: measures-component
+      description: REST surface for measures-component.
+      operations:
+      - method: GET
+        name: getcomponentmeasures
+        description: Get Component Measures
+        call: sonarcloud-measures.getcomponentmeasures
+        with:
+          component: rest.component
+          metricKeys: rest.metricKeys
+          branch: rest.branch
+          pullRequest: rest.pullRequest
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: sonarcloud-measures-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SonarCloud API — Measures. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-component-measures
+      description: Get Component Measures
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sonarcloud-measures.getcomponentmeasures
+      with:
+        component: tools.component
+        metricKeys: tools.metricKeys
+        branch: tools.branch
+        pullRequest: tools.pullRequest
+      outputParameters:
+      - type: object
+        mapping: $.

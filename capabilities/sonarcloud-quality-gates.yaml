@@ -1,0 +1,139 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SonarCloud API — Quality Gates
+  description: 'SonarCloud API — Quality Gates. 2 operations. Lead operation: List Quality Gates. Self-contained Naftiko capability
+    covering one Sonar business surface.'
+  tags:
+  - Sonar
+  - Quality Gates
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SONAR_API_KEY: SONAR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: sonarcloud-quality-gates
+    baseUri: https://sonarcloud.io/api
+    description: SonarCloud API — Quality Gates business capability. Self-contained, no shared references.
+    resources:
+    - name: qualitygates-list
+      path: /qualitygates/list
+      operations:
+      - name: listqualitygates
+        method: GET
+        description: List Quality Gates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: organization
+          in: query
+          type: string
+          description: Organization key
+          required: true
+    - name: qualitygates-project_status
+      path: /qualitygates/project_status
+      operations:
+      - name: getqualitygatestatus
+        method: GET
+        description: Get Quality Gate Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectKey
+          in: query
+          type: string
+          description: Project key
+        - name: analysisId
+          in: query
+          type: string
+          description: Analysis ID
+        - name: branch
+          in: query
+          type: string
+          description: Branch name
+        - name: pullRequest
+          in: query
+          type: string
+          description: Pull request number
+    authentication:
+      type: bearer
+      token: '{{env.SONAR_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: sonarcloud-quality-gates-rest
+    port: 8080
+    description: REST adapter for SonarCloud API — Quality Gates. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/qualitygates/list
+      name: qualitygates-list
+      description: REST surface for qualitygates-list.
+      operations:
+      - method: GET
+        name: listqualitygates
+        description: List Quality Gates
+        call: sonarcloud-quality-gates.listqualitygates
+        with:
+          organization: rest.organization
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/qualitygates/project-status
+      name: qualitygates-project-status
+      description: REST surface for qualitygates-project_status.
+      operations:
+      - method: GET
+        name: getqualitygatestatus
+        description: Get Quality Gate Status
+        call: sonarcloud-quality-gates.getqualitygatestatus
+        with:
+          projectKey: rest.projectKey
+          analysisId: rest.analysisId
+          branch: rest.branch
+          pullRequest: rest.pullRequest
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: sonarcloud-quality-gates-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SonarCloud API — Quality Gates. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-quality-gates
+      description: List Quality Gates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sonarcloud-quality-gates.listqualitygates
+      with:
+        organization: tools.organization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-quality-gate-status
+      description: Get Quality Gate Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sonarcloud-quality-gates.getqualitygatestatus
+      with:
+        projectKey: tools.projectKey
+        analysisId: tools.analysisId
+        branch: tools.branch
+        pullRequest: tools.pullRequest
+      outputParameters:
+      - type: object
+        mapping: $.
