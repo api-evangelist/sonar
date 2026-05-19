@@ -18,7 +18,7 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/sonar/refs/heads/main/apis.yml
 created: '2024-01-01'
-modified: '2026-05-02'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
   - aid: sonar:sonarqube-web-api
@@ -114,6 +114,9 @@ common:
     title: Sonar Vocabulary
   - type: Integrations
     url: https://www.sonarsource.com/integrations/
+  - name: MCP Server
+    url: https://github.com/SonarSource/sonarqube-mcp-server
+    type: MCPServer
 integrations:
   - name: GitHub
   - name: Bitbucket
