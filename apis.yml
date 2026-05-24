@@ -117,6 +117,8 @@ common:
 - name: MCP Server
   url: https://github.com/SonarSource/sonarqube-mcp-server
   type: MCPServer
+- type: LLMsTxt
+  url: https://docs.sonarsource.com/llms.txt
 integrations:
 - name: GitHub
 - name: Bitbucket
