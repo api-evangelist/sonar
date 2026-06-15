@@ -1,0 +1,359 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SonarCloud API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sonarcloud.io/api/organizations/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query to filter organizations by name or key"
+              },
+              {
+                "name": "p",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "ps",
+                "value": "",
+                "type": "query",
+                "description": "Page size (max 500)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Search for organizations on SonarCloud. Organizations are the top-level entity in SonarCloud, grouping projects from a DevOps platform account (GitHub, GitLab, Bitbucket, or Azure DevOps)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sonarcloud.io/api/projects/search",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "query",
+                "description": "Organization key"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query for project name or key"
+              },
+              {
+                "name": "qualitygate",
+                "value": "",
+                "type": "query",
+                "description": "Filter by quality gate name"
+              },
+              {
+                "name": "p",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "ps",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Search for projects within an organization on SonarCloud. Returns project details including last analysis date, quality gate status, and language breakdown."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Issues",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sonarcloud.io/api/issues/search",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "query",
+                "description": "Organization key to scope the search"
+              },
+              {
+                "name": "componentKeys",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated component keys to scope the search"
+              },
+              {
+                "name": "severities",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated severities"
+              },
+              {
+                "name": "types",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated issue types"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated statuses"
+              },
+              {
+                "name": "resolved",
+                "value": "",
+                "type": "query",
+                "description": "Filter by resolution status"
+              },
+              {
+                "name": "rules",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated rule keys"
+              },
+              {
+                "name": "p",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "ps",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Search for code issues across projects in an organization. Supports filtering by severity, type, status, assignee, rule, language, component, and date ranges."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Quality Gates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Quality Gates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sonarcloud.io/api/qualitygates/list",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "query",
+                "description": "Organization key"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List all quality gates for an organization. Quality gates define the conditions a project must meet to pass the clean code standard."
+        },
+        {
+          "info": {
+            "name": "Get Quality Gate Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sonarcloud.io/api/qualitygates/project_status",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "query",
+                "description": "Project key"
+              },
+              {
+                "name": "analysisId",
+                "value": "",
+                "type": "query",
+                "description": "Analysis ID"
+              },
+              {
+                "name": "branch",
+                "value": "",
+                "type": "query",
+                "description": "Branch name"
+              },
+              {
+                "name": "pullRequest",
+                "value": "",
+                "type": "query",
+                "description": "Pull request number"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the quality gate status for a project or pull request analysis. Returns overall OK/ERROR status and individual condition results."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Measures",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Component Measures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sonarcloud.io/api/measures/component",
+            "params": [
+              {
+                "name": "component",
+                "value": "",
+                "type": "query",
+                "description": "Component key"
+              },
+              {
+                "name": "metricKeys",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated metric keys"
+              },
+              {
+                "name": "branch",
+                "value": "",
+                "type": "query",
+                "description": "Branch name"
+              },
+              {
+                "name": "pullRequest",
+                "value": "",
+                "type": "query",
+                "description": "Pull request number"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get metric measures for a component. Returns values for requested metric keys including coverage, bugs, vulnerabilities, code smells, duplications, technical debt, and ratings."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "User Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search User Tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sonarcloud.io/api/user_tokens/search",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List the user tokens associated with the authenticated user account. Returns token names and creation dates (not the actual token values)."
+        },
+        {
+          "info": {
+            "name": "Generate User Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sonarcloud.io/api/user_tokens/generate",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "name",
+                  "value": ""
+                },
+                {
+                  "name": "organizationKey",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Generate a new user token for API authentication. The token value is returned only once and must be stored securely. Tokens can be scoped to specific organizations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

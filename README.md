@@ -1,89 +1,96 @@
-# Sonar
+# Sonar (sonar)
 
-Sonar (SonarSource) provides code quality and security analysis tools including SonarQube (self-hosted), SonarCloud (cloud), and SonarLint (IDE plugin) for continuous code quality inspection across 30+ programming languages.
+Sonar (SonarSource) provides code quality and security analysis tools for developers. Products include SonarQube (self-hosted), SonarCloud (cloud-hosted), and SonarLint (IDE plugin), offering continuous inspection through static code analysis across 30+ programming languages.
 
-**URL:** [https://raw.githubusercontent.com/api-evangelist/sonar/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/sonar/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/sonar/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/sonar/refs/heads/main/apis.yml)
 
 ## Tags
 
-CI/CD, Code Quality, DevOps, Security, SonarCloud, SonarQube, Static Analysis
+- CI/CD
+- Code Quality
+- DevOps
+- Security
+- SonarCloud
+- SonarQube
+- Static Analysis
+
+## Timestamps
+
+- **Created:** 2024-01-01
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### SonarQube Web API
 
-REST API for SonarQube Server — project management, quality gates, issues, rules, and CI/CD integrations.
+REST API for interacting with SonarQube Server, enabling management of projects, quality gates, issues, rules, users, and CI/CD integrations. Uses token-based authentication.
 
-- **Documentation:** [https://docs.sonarsource.com/sonarqube-server/latest/extension-guide/web-api/](https://docs.sonarsource.com/sonarqube-server/latest/extension-guide/web-api/)
-- **Reference:** [https://api-docs.sonarsource.com/](https://api-docs.sonarsource.com/)
+- **Human URL:** [https://docs.sonarsource.com/sonarqube-server/latest/extension-guide/web-api/](https://docs.sonarsource.com/sonarqube-server/latest/extension-guide/web-api/)
+
+#### Tags
+
+- Code Quality
+- DevOps
+- Security
+- SonarQube
+- Static Analysis
+- Technical Debt
+
+#### Properties
+
+- [Documentation](https://docs.sonarsource.com/sonarqube-server/latest/extension-guide/web-api/)
+- [Reference](https://api-docs.sonarsource.com/)
+- [Authentication](https://docs.sonarsource.com/sonarqube-server/latest/extension-guide/web-api/)
+- [Postman Collection](collections/sonar-sonarcloud-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/sonar-sonarcloud-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### SonarCloud API
 
-Cloud-based code quality API for GitHub, GitLab, Bitbucket, and Azure DevOps organizations.
+Cloud-based code quality and security analysis API for analyzing code repositories from GitHub, GitLab, Bitbucket, and Azure DevOps organizations. Provides organization management, project analysis, issue tracking, quality gate monitoring, and metric retrieval.
 
-- **Documentation:** [https://sonarcloud.io/web_api](https://sonarcloud.io/web_api)
-- **Getting Started:** [https://docs.sonarcloud.io/](https://docs.sonarcloud.io/)
-- **OpenAPI:** [openapi/sonar-sonarcloud-api-openapi.yml](openapi/sonar-sonarcloud-api-openapi.yml)
+- **Human URL:** [https://sonarcloud.io/web_api](https://sonarcloud.io/web_api)
 
-**Operations:**
-- `GET /organizations/search` — Search Organizations
-- `GET /projects/search` — Search Projects
-- `GET /issues/search` — Search Issues
-- `GET /qualitygates/list` — List Quality Gates
-- `GET /qualitygates/project_status` — Get Quality Gate Status
-- `GET /measures/component` — Get Component Measures
-- `GET /user_tokens/search` — Search User Tokens
-- `POST /user_tokens/generate` — Generate User Token
+#### Tags
 
-## Artifacts
+- Bitbucket
+- CI/CD
+- Cloud
+- Code Quality
+- GitHub
+- GitLab
+- SonarCloud
 
-### OpenAPI
+#### Properties
 
-- [openapi/sonar-sonarcloud-api-openapi.yml](openapi/sonar-sonarcloud-api-openapi.yml) — SonarCloud API specification
-
-### JSON Schemas
-
-- [json-schema/sonar-organization-schema.json](json-schema/sonar-organization-schema.json) — SonarCloud organization
-- [json-schema/sonar-issue-schema.json](json-schema/sonar-issue-schema.json) — Code issue (bug, vulnerability, code smell)
-
-### JSON Structure
-
-- [json-structure/sonar-sonarcloud-structure.json](json-structure/sonar-sonarcloud-structure.json) — SonarCloud API data entity structures
-
-### JSON-LD
-
-- [json-ld/sonar-context.jsonld](json-ld/sonar-context.jsonld) — Linked data context for Sonar resources
-
-### Spectral Rules
-
-- [rules/sonar-rules.yml](rules/sonar-rules.yml) — API governance rules for Sonar API conventions
-
-### Naftiko Capabilities
-
-| Capability | Description |
-|---|---|
-| [capabilities/cloud-code-quality.yaml](capabilities/cloud-code-quality.yaml) | Cloud code quality governance workflow (8 tools) |
-| [capabilities/shared/sonarcloud-api.yaml](capabilities/shared/sonarcloud-api.yaml) | Shared: SonarCloud API (8 tools) |
-
-### Examples
-
-- [examples/sonar-search-organizations-example.json](examples/sonar-search-organizations-example.json) — Search organizations response
-- [examples/sonar-quality-gate-status-example.json](examples/sonar-quality-gate-status-example.json) — Quality gate passing status
-
-### Vocabulary
-
-- [vocabulary/sonar-vocabulary.yml](vocabulary/sonar-vocabulary.yml) — Sonar domain vocabulary (Clean Code, quality gates, CI/CD)
+- [Documentation](https://sonarcloud.io/web_api)
+- [Getting Started](https://docs.sonarcloud.io/)
+- [Authentication](https://docs.sonarcloud.io/advanced-setup/api-authentication/)
+- [OpenAPI](openapi/sonar-sonarcloud-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/sonar-sonarcloud-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/sonar-sonarcloud-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/sonar-organization-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/sonar-issue-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Structure](json-structure/sonar-sonarcloud-structure.json)
+- [JSON-LD](json-ld/sonar-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [Spectral Rules](rules/sonar-rules.yml)
+- [Example](examples/sonar-search-organizations-example.json)
+- [Example](examples/sonar-quality-gate-status-example.json)
 
 ## Common Properties
 
+- [LinkedIn](https://www.linkedin.com/company/sonarsource)
 - [Website](https://www.sonarsource.com/)
 - [Blog](https://www.sonarsource.com/blog/)
 - [GitHub Organization](https://github.com/SonarSource)
-- [Community](https://community.sonarsource.com/)
-- [Status](https://status.sonarsource.com/)
+- [Support](https://community.sonarsource.com/)
+- [Status Page](https://status.sonarsource.com/)
 - [Pricing](https://www.sonarsource.com/plans-and-pricing/)
 - [Terms of Service](https://www.sonarsource.com/terms/)
 - [Privacy Policy](https://www.sonarsource.com/privacy/)
+- [Vocabulary](vocabulary/sonar-vocabulary.yml)
+- [Integrations](https://www.sonarsource.com/integrations/)
+- [M C P Server](https://github.com/SonarSource/sonarqube-mcp-server)
+- [L L Ms Txt](https://docs.sonarsource.com/llms.txt)
 
 ## Maintainers
 
