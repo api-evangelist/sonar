@@ -75,10 +75,10 @@ apis:
         url: json-ld/sonar-context.jsonld
       - type: SpectralRules
         url: rules/sonar-rules.yml
-      - type: Example
+      - type: Examples
         url: examples/sonar-search-organizations-example.json
         title: Search Organizations Example
-      - type: Example
+      - type: Examples
         url: examples/sonar-quality-gate-status-example.json
         title: Quality Gate Status Example
 common:
@@ -108,7 +108,7 @@ common:
   - name: MCP Server
     url: https://github.com/SonarSource/sonarqube-mcp-server
     type: MCPServer
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.sonarsource.com/llms.txt
 integrations:
   - name: GitHub
