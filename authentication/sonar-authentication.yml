@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/sonar-sonarcloud-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: SonarCloud user token. Generate at https://sonarcloud.io/account/security. Pass
+    as Bearer token or as basic auth username with empty password.
+  sources:
+  - openapi/sonar-sonarcloud-api-openapi.yml

@@ -82,6 +82,10 @@ apis:
         url: examples/sonar-quality-gate-status-example.json
         title: Quality Gate Status Example
 common:
+  - type: DomainSecurity
+    url: security/sonar-domain-security.yml
+  - type: Authentication
+    url: authentication/sonar-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/sonarsource
   - type: Website
