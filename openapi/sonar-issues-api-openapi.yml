@@ -1,0 +1,172 @@
+openapi: 3.1.0
+info:
+  title: SonarCloud Issues API
+  description: The SonarCloud API provides HTTP endpoints for programmatic interaction with SonarCloud — Sonar's cloud-based code quality and security analysis service. It enables management of organizations, projects, quality gates, issues, and analysis integrations with GitHub, GitLab, Bitbucket, and Azure DevOps. Token-based authentication is required for all endpoints.
+  version: 1.0.0
+  contact:
+    name: SonarSource
+    url: https://community.sonarsource.com/
+  license:
+    name: GNU Lesser General Public License v3.0
+    url: https://www.gnu.org/licenses/lgpl-3.0.html
+servers:
+- url: https://sonarcloud.io/api
+  description: SonarCloud API
+tags:
+- name: Issues
+  description: Code issue search and management
+paths:
+  /issues/search:
+    get:
+      operationId: searchIssues
+      summary: Search Issues
+      description: Search for code issues across projects in an organization. Supports filtering by severity, type, status, assignee, rule, language, component, and date ranges.
+      tags:
+      - Issues
+      parameters:
+      - name: organization
+        in: query
+        description: Organization key to scope the search
+        schema:
+          type: string
+      - name: componentKeys
+        in: query
+        description: Comma-separated component keys to scope the search
+        schema:
+          type: string
+      - name: severities
+        in: query
+        description: Comma-separated severities
+        schema:
+          type: string
+      - name: types
+        in: query
+        description: Comma-separated issue types
+        schema:
+          type: string
+      - name: statuses
+        in: query
+        description: Comma-separated statuses
+        schema:
+          type: string
+      - name: resolved
+        in: query
+        description: Filter by resolution status
+        schema:
+          type: boolean
+      - name: rules
+        in: query
+        description: Comma-separated rule keys
+        schema:
+          type: string
+      - name: p
+        in: query
+        description: Page number
+        schema:
+          type: integer
+          default: 1
+      - name: ps
+        in: query
+        description: Page size
+        schema:
+          type: integer
+          default: 100
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Successfully retrieved issues
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueSearchResponse'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    Paging:
+      type: object
+      properties:
+        pageIndex:
+          type: integer
+        pageSize:
+          type: integer
+        total:
+          type: integer
+    Issue:
+      type: object
+      properties:
+        key:
+          type: string
+        rule:
+          type: string
+        severity:
+          type: string
+          enum:
+          - INFO
+          - MINOR
+          - MAJOR
+          - CRITICAL
+          - BLOCKER
+        component:
+          type: string
+        project:
+          type: string
+        organization:
+          type: string
+        line:
+          type: integer
+        status:
+          type: string
+          enum:
+          - OPEN
+          - CONFIRMED
+          - REOPENED
+          - RESOLVED
+          - CLOSED
+        resolution:
+          type: string
+          enum:
+          - FIXED
+          - FALSE-POSITIVE
+          - WONTFIX
+          - REMOVED
+        type:
+          type: string
+          enum:
+          - CODE_SMELL
+          - BUG
+          - VULNERABILITY
+          - SECURITY_HOTSPOT
+        message:
+          type: string
+        author:
+          type: string
+        assignee:
+          type: string
+        creationDate:
+          type: string
+          format: date-time
+        updateDate:
+          type: string
+          format: date-time
+        tags:
+          type: array
+          items:
+            type: string
+        effort:
+          type: string
+    IssueSearchResponse:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/Paging'
+        issues:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: SonarCloud user token. Generate at https://sonarcloud.io/account/security. Pass as Bearer token or as basic auth username with empty password.

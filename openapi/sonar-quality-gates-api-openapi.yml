@@ -1,0 +1,156 @@
+openapi: 3.1.0
+info:
+  title: SonarCloud Issues Quality Gates API
+  description: The SonarCloud API provides HTTP endpoints for programmatic interaction with SonarCloud — Sonar's cloud-based code quality and security analysis service. It enables management of organizations, projects, quality gates, issues, and analysis integrations with GitHub, GitLab, Bitbucket, and Azure DevOps. Token-based authentication is required for all endpoints.
+  version: 1.0.0
+  contact:
+    name: SonarSource
+    url: https://community.sonarsource.com/
+  license:
+    name: GNU Lesser General Public License v3.0
+    url: https://www.gnu.org/licenses/lgpl-3.0.html
+servers:
+- url: https://sonarcloud.io/api
+  description: SonarCloud API
+tags:
+- name: Quality Gates
+  description: Quality gate configuration and status
+paths:
+  /qualitygates/list:
+    get:
+      operationId: listQualityGates
+      summary: List Quality Gates
+      description: List all quality gates for an organization. Quality gates define the conditions a project must meet to pass the clean code standard.
+      tags:
+      - Quality Gates
+      parameters:
+      - name: organization
+        in: query
+        required: true
+        description: Organization key
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Successfully retrieved quality gates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QualityGateListResponse'
+        '401':
+          description: Unauthorized
+  /qualitygates/project_status:
+    get:
+      operationId: getQualityGateStatus
+      summary: Get Quality Gate Status
+      description: Get the quality gate status for a project or pull request analysis. Returns overall OK/ERROR status and individual condition results.
+      tags:
+      - Quality Gates
+      parameters:
+      - name: projectKey
+        in: query
+        description: Project key
+        schema:
+          type: string
+      - name: analysisId
+        in: query
+        description: Analysis ID
+        schema:
+          type: string
+      - name: branch
+        in: query
+        description: Branch name
+        schema:
+          type: string
+      - name: pullRequest
+        in: query
+        description: Pull request number
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Successfully retrieved quality gate status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QualityGateStatus'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    QualityGateListResponse:
+      type: object
+      properties:
+        qualitygates:
+          type: array
+          items:
+            $ref: '#/components/schemas/QualityGate'
+        default:
+          type: integer
+    QualityGateStatus:
+      type: object
+      properties:
+        projectStatus:
+          type: object
+          properties:
+            status:
+              type: string
+              enum:
+              - OK
+              - ERROR
+              - NONE
+            conditions:
+              type: array
+              items:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum:
+                    - OK
+                    - ERROR
+                    - NO_VALUE
+                  metricKey:
+                    type: string
+                  comparator:
+                    type: string
+                  errorThreshold:
+                    type: string
+                  actualValue:
+                    type: string
+    QualityGate:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        isDefault:
+          type: boolean
+        isBuiltIn:
+          type: boolean
+        conditions:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              metric:
+                type: string
+              op:
+                type: string
+                enum:
+                - LT
+                - GT
+              error:
+                type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: SonarCloud user token. Generate at https://sonarcloud.io/account/security. Pass as Bearer token or as basic auth username with empty password.
