@@ -1,0 +1,395 @@
+{
+  "info": {
+    "_postman_id": "44f1dac2-5231-4c46-9aba-22e6ec79a3e5",
+    "name": "SonarCloud Issues User Tokens API",
+    "description": "The SonarCloud API provides HTTP endpoints for programmatic interaction with SonarCloud \u2014 Sonar's cloud-based code quality and security analysis service. It enables management of organizations, projects, quality gates, issues, and analysis integrations with GitHub, GitLab, Bitbucket, and Azure DevOps. Token-based authentication is required for all endpoints.\n\nContact Support:\n Name: SonarSource",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:58:55.000Z",
+    "updatedAt": "2026-07-28T02:58:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-44f1dac2-5231-4c46-9aba-22e6ec79a3e5"
+  },
+  "item": [
+    {
+      "name": "user_tokens",
+      "item": [
+        {
+          "name": "search",
+          "item": [
+            {
+              "name": "Search User Tokens",
+              "id": "add9a680-a181-439e-b7f6-b3e286f31196",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/user_tokens/search",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user_tokens",
+                    "search"
+                  ]
+                },
+                "description": "List the user tokens associated with the authenticated user account. Returns token names and creation dates (not the actual token values)."
+              },
+              "response": [
+                {
+                  "id": "63473a21-423e-45b9-ad8d-e1879d98a639",
+                  "name": "Successfully retrieved user tokens",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user_tokens/search",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_tokens",
+                        "search"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"login\": \"<string>\",\n  \"userTokens\": [\n    {\n      \"name\": \"<string>\",\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"createdAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:58:55.000Z",
+                  "updatedAt": "2026-07-28T02:58:55.000Z",
+                  "uid": "35240-63473a21-423e-45b9-ad8d-e1879d98a639"
+                },
+                {
+                  "id": "a9213542-2373-4380-aa56-7dee52424f23",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user_tokens/search",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_tokens",
+                        "search"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:58:55.000Z",
+                  "updatedAt": "2026-07-28T02:58:55.000Z",
+                  "uid": "35240-a9213542-2373-4380-aa56-7dee52424f23"
+                }
+              ],
+              "createdAt": "2026-07-28T02:58:55.000Z",
+              "updatedAt": "2026-07-28T02:58:55.000Z",
+              "uid": "35240-add9a680-a181-439e-b7f6-b3e286f31196"
+            }
+          ],
+          "id": "98f7e936-d90a-4245-9e4b-8865d042c000",
+          "createdAt": "2026-07-28T02:58:55.000Z",
+          "updatedAt": "2026-07-28T02:58:55.000Z",
+          "uid": "35240-98f7e936-d90a-4245-9e4b-8865d042c000"
+        },
+        {
+          "name": "generate",
+          "item": [
+            {
+              "name": "Generate User Token",
+              "id": "171f8e22-f9d6-40a8-b4d2-79b93fec0745",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) Token name",
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Scope token to a specific organization",
+                      "key": "organizationKey",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user_tokens/generate",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user_tokens",
+                    "generate"
+                  ]
+                },
+                "description": "Generate a new user token for API authentication. The token value is returned only once and must be stored securely. Tokens can be scoped to specific organizations."
+              },
+              "response": [
+                {
+                  "id": "e17a7b64-7680-49c7-bf50-caac84bf801e",
+                  "name": "Token generated successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Token name",
+                          "key": "name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Scope token to a specific organization",
+                          "key": "organizationKey",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_tokens/generate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_tokens",
+                        "generate"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"login\": \"<string>\",\n  \"name\": \"<string>\",\n  \"token\": \"<string>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:58:55.000Z",
+                  "updatedAt": "2026-07-28T02:58:55.000Z",
+                  "uid": "35240-e17a7b64-7680-49c7-bf50-caac84bf801e"
+                },
+                {
+                  "id": "02323596-d3dc-4f6f-917b-bc9d5bcd76a2",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Token name",
+                          "key": "name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Scope token to a specific organization",
+                          "key": "organizationKey",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_tokens/generate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_tokens",
+                        "generate"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:58:55.000Z",
+                  "updatedAt": "2026-07-28T02:58:55.000Z",
+                  "uid": "35240-02323596-d3dc-4f6f-917b-bc9d5bcd76a2"
+                },
+                {
+                  "id": "4592e794-ab3c-42d3-9744-f924f48b533e",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Token name",
+                          "key": "name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Scope token to a specific organization",
+                          "key": "organizationKey",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_tokens/generate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_tokens",
+                        "generate"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:58:55.000Z",
+                  "updatedAt": "2026-07-28T02:58:55.000Z",
+                  "uid": "35240-4592e794-ab3c-42d3-9744-f924f48b533e"
+                }
+              ],
+              "createdAt": "2026-07-28T02:58:55.000Z",
+              "updatedAt": "2026-07-28T02:58:55.000Z",
+              "uid": "35240-171f8e22-f9d6-40a8-b4d2-79b93fec0745"
+            }
+          ],
+          "id": "784bb788-24bd-4afe-be7d-c1df1fa34af9",
+          "createdAt": "2026-07-28T02:58:55.000Z",
+          "updatedAt": "2026-07-28T02:58:55.000Z",
+          "uid": "35240-784bb788-24bd-4afe-be7d-c1df1fa34af9"
+        }
+      ],
+      "id": "7f2ecc36-1acb-4aed-9339-26d0491464d1",
+      "createdAt": "2026-07-28T02:58:55.000Z",
+      "updatedAt": "2026-07-28T02:58:55.000Z",
+      "uid": "35240-7f2ecc36-1acb-4aed-9339-26d0491464d1"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://sonarcloud.io/api"
+    }
+  ]
+}

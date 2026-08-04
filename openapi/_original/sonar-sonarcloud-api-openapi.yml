@@ -1,0 +1,611 @@
+openapi: 3.1.0
+info:
+  title: SonarCloud API
+  description: >-
+    The SonarCloud API provides HTTP endpoints for programmatic interaction
+    with SonarCloud — Sonar's cloud-based code quality and security analysis
+    service. It enables management of organizations, projects, quality gates,
+    issues, and analysis integrations with GitHub, GitLab, Bitbucket, and
+    Azure DevOps. Token-based authentication is required for all endpoints.
+  version: 1.0.0
+  contact:
+    name: SonarSource
+    url: https://community.sonarsource.com/
+  license:
+    name: GNU Lesser General Public License v3.0
+    url: https://www.gnu.org/licenses/lgpl-3.0.html
+servers:
+  - url: https://sonarcloud.io/api
+    description: SonarCloud API
+paths:
+  /organizations/search:
+    get:
+      operationId: searchOrganizations
+      summary: Search Organizations
+      description: >-
+        Search for organizations on SonarCloud. Organizations are the top-level
+        entity in SonarCloud, grouping projects from a DevOps platform account
+        (GitHub, GitLab, Bitbucket, or Azure DevOps).
+      tags:
+        - Organizations
+      parameters:
+        - name: q
+          in: query
+          description: Search query to filter organizations by name or key
+          schema:
+            type: string
+        - name: p
+          in: query
+          description: Page number
+          schema:
+            type: integer
+            default: 1
+        - name: ps
+          in: query
+          description: Page size (max 500)
+          schema:
+            type: integer
+            default: 25
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successfully retrieved organizations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationSearchResponse'
+        '401':
+          description: Unauthorized
+  /projects/search:
+    get:
+      operationId: searchProjects
+      summary: Search Projects
+      description: >-
+        Search for projects within an organization on SonarCloud. Returns
+        project details including last analysis date, quality gate status,
+        and language breakdown.
+      tags:
+        - Projects
+      parameters:
+        - name: organization
+          in: query
+          required: true
+          description: Organization key
+          schema:
+            type: string
+        - name: q
+          in: query
+          description: Search query for project name or key
+          schema:
+            type: string
+        - name: qualitygate
+          in: query
+          description: Filter by quality gate name
+          schema:
+            type: string
+        - name: p
+          in: query
+          description: Page number
+          schema:
+            type: integer
+            default: 1
+        - name: ps
+          in: query
+          description: Page size
+          schema:
+            type: integer
+            default: 100
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successfully retrieved projects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectSearchResponse'
+        '401':
+          description: Unauthorized
+  /issues/search:
+    get:
+      operationId: searchIssues
+      summary: Search Issues
+      description: >-
+        Search for code issues across projects in an organization. Supports
+        filtering by severity, type, status, assignee, rule, language,
+        component, and date ranges.
+      tags:
+        - Issues
+      parameters:
+        - name: organization
+          in: query
+          description: Organization key to scope the search
+          schema:
+            type: string
+        - name: componentKeys
+          in: query
+          description: Comma-separated component keys to scope the search
+          schema:
+            type: string
+        - name: severities
+          in: query
+          description: Comma-separated severities
+          schema:
+            type: string
+        - name: types
+          in: query
+          description: Comma-separated issue types
+          schema:
+            type: string
+        - name: statuses
+          in: query
+          description: Comma-separated statuses
+          schema:
+            type: string
+        - name: resolved
+          in: query
+          description: Filter by resolution status
+          schema:
+            type: boolean
+        - name: rules
+          in: query
+          description: Comma-separated rule keys
+          schema:
+            type: string
+        - name: p
+          in: query
+          description: Page number
+          schema:
+            type: integer
+            default: 1
+        - name: ps
+          in: query
+          description: Page size
+          schema:
+            type: integer
+            default: 100
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successfully retrieved issues
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueSearchResponse'
+        '401':
+          description: Unauthorized
+  /qualitygates/list:
+    get:
+      operationId: listQualityGates
+      summary: List Quality Gates
+      description: >-
+        List all quality gates for an organization. Quality gates define
+        the conditions a project must meet to pass the clean code standard.
+      tags:
+        - Quality Gates
+      parameters:
+        - name: organization
+          in: query
+          required: true
+          description: Organization key
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successfully retrieved quality gates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QualityGateListResponse'
+        '401':
+          description: Unauthorized
+  /qualitygates/project_status:
+    get:
+      operationId: getQualityGateStatus
+      summary: Get Quality Gate Status
+      description: >-
+        Get the quality gate status for a project or pull request analysis.
+        Returns overall OK/ERROR status and individual condition results.
+      tags:
+        - Quality Gates
+      parameters:
+        - name: projectKey
+          in: query
+          description: Project key
+          schema:
+            type: string
+        - name: analysisId
+          in: query
+          description: Analysis ID
+          schema:
+            type: string
+        - name: branch
+          in: query
+          description: Branch name
+          schema:
+            type: string
+        - name: pullRequest
+          in: query
+          description: Pull request number
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successfully retrieved quality gate status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QualityGateStatus'
+        '401':
+          description: Unauthorized
+  /measures/component:
+    get:
+      operationId: getComponentMeasures
+      summary: Get Component Measures
+      description: >-
+        Get metric measures for a component. Returns values for requested
+        metric keys including coverage, bugs, vulnerabilities, code smells,
+        duplications, technical debt, and ratings.
+      tags:
+        - Measures
+      parameters:
+        - name: component
+          in: query
+          required: true
+          description: Component key
+          schema:
+            type: string
+        - name: metricKeys
+          in: query
+          required: true
+          description: Comma-separated metric keys
+          schema:
+            type: string
+        - name: branch
+          in: query
+          description: Branch name
+          schema:
+            type: string
+        - name: pullRequest
+          in: query
+          description: Pull request number
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successfully retrieved component measures
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComponentMeasuresResponse'
+        '401':
+          description: Unauthorized
+  /user_tokens/search:
+    get:
+      operationId: searchUserTokens
+      summary: Search User Tokens
+      description: >-
+        List the user tokens associated with the authenticated user account.
+        Returns token names and creation dates (not the actual token values).
+      tags:
+        - User Tokens
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successfully retrieved user tokens
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTokenSearchResponse'
+        '401':
+          description: Unauthorized
+  /user_tokens/generate:
+    post:
+      operationId: generateUserToken
+      summary: Generate User Token
+      description: >-
+        Generate a new user token for API authentication. The token value
+        is returned only once and must be stored securely. Tokens can be
+        scoped to specific organizations.
+      tags:
+        - User Tokens
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+                  description: Token name
+                organizationKey:
+                  type: string
+                  description: Scope token to a specific organization
+      responses:
+        '200':
+          description: Token generated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserToken'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        SonarCloud user token. Generate at https://sonarcloud.io/account/security.
+        Pass as Bearer token or as basic auth username with empty password.
+  schemas:
+    OrganizationSearchResponse:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/Paging'
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization'
+    Organization:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Organization key (unique identifier)
+        name:
+          type: string
+          description: Organization display name
+        guarded:
+          type: boolean
+          description: Whether the organization is guarded (cannot be deleted)
+        visibility:
+          type: string
+          enum: [public, private]
+        subscription:
+          type: string
+          enum: [FREE, PAID]
+        alm:
+          type: object
+          properties:
+            key:
+              type: string
+              enum: [github, gitlab, bitbucket, azure]
+            url:
+              type: string
+          description: Connected DevOps platform
+    ProjectSearchResponse:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/Paging'
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+    Project:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Project key
+        name:
+          type: string
+          description: Project display name
+        qualifier:
+          type: string
+          enum: [TRK, APP, VW]
+        visibility:
+          type: string
+          enum: [public, private]
+        lastAnalysisDate:
+          type: string
+          format: date-time
+        revision:
+          type: string
+        organization:
+          type: string
+          description: Organization key
+    IssueSearchResponse:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/Paging'
+        issues:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+    Issue:
+      type: object
+      properties:
+        key:
+          type: string
+        rule:
+          type: string
+        severity:
+          type: string
+          enum: [INFO, MINOR, MAJOR, CRITICAL, BLOCKER]
+        component:
+          type: string
+        project:
+          type: string
+        organization:
+          type: string
+        line:
+          type: integer
+        status:
+          type: string
+          enum: [OPEN, CONFIRMED, REOPENED, RESOLVED, CLOSED]
+        resolution:
+          type: string
+          enum: [FIXED, FALSE-POSITIVE, WONTFIX, REMOVED]
+        type:
+          type: string
+          enum: [CODE_SMELL, BUG, VULNERABILITY, SECURITY_HOTSPOT]
+        message:
+          type: string
+        author:
+          type: string
+        assignee:
+          type: string
+        creationDate:
+          type: string
+          format: date-time
+        updateDate:
+          type: string
+          format: date-time
+        tags:
+          type: array
+          items:
+            type: string
+        effort:
+          type: string
+    QualityGateListResponse:
+      type: object
+      properties:
+        qualitygates:
+          type: array
+          items:
+            $ref: '#/components/schemas/QualityGate'
+        default:
+          type: integer
+    QualityGate:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        isDefault:
+          type: boolean
+        isBuiltIn:
+          type: boolean
+        conditions:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              metric:
+                type: string
+              op:
+                type: string
+                enum: [LT, GT]
+              error:
+                type: string
+    QualityGateStatus:
+      type: object
+      properties:
+        projectStatus:
+          type: object
+          properties:
+            status:
+              type: string
+              enum: [OK, ERROR, NONE]
+            conditions:
+              type: array
+              items:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [OK, ERROR, NO_VALUE]
+                  metricKey:
+                    type: string
+                  comparator:
+                    type: string
+                  errorThreshold:
+                    type: string
+                  actualValue:
+                    type: string
+    ComponentMeasuresResponse:
+      type: object
+      properties:
+        component:
+          type: object
+          properties:
+            key:
+              type: string
+            name:
+              type: string
+            organization:
+              type: string
+            measures:
+              type: array
+              items:
+                type: object
+                properties:
+                  metric:
+                    type: string
+                  value:
+                    type: string
+                  bestValue:
+                    type: boolean
+    UserTokenSearchResponse:
+      type: object
+      properties:
+        login:
+          type: string
+        userTokens:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              createdAt:
+                type: string
+                format: date-time
+    UserToken:
+      type: object
+      properties:
+        login:
+          type: string
+        name:
+          type: string
+        token:
+          type: string
+          description: Token value — only returned once at generation time
+        createdAt:
+          type: string
+          format: date-time
+    Paging:
+      type: object
+      properties:
+        pageIndex:
+          type: integer
+        pageSize:
+          type: integer
+        total:
+          type: integer
+tags:
+  - name: Issues
+    description: Code issue search and management
+  - name: Measures
+    description: Component metrics and measurement data
+  - name: Organizations
+    description: Organization management and discovery
+  - name: Projects
+    description: Project search and management within organizations
+  - name: Quality Gates
+    description: Quality gate configuration and status
+  - name: User Tokens
+    description: API token generation and management

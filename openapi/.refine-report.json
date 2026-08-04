@@ -1,0 +1,24 @@
+{
+  "provider": "sonar",
+  "sources": [
+    "sonar-issues-api-openapi.yml",
+    "sonar-measures-api-openapi.yml",
+    "sonar-organizations-api-openapi.yml",
+    "sonar-projects-api-openapi.yml",
+    "sonar-quality-gates-api-openapi.yml",
+    "sonar-user-tokens-api-openapi.yml"
+  ],
+  "outputs": [
+    "sonar-issues-api-openapi.yml",
+    "sonar-measures-api-openapi.yml",
+    "sonar-organizations-api-openapi.yml",
+    "sonar-projects-api-openapi.yml",
+    "sonar-quality-gates-api-openapi.yml",
+    "sonar-user-tokens-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,208 @@
+{
+  "info": {
+    "_postman_id": "053a63a6-0084-4d9a-9d56-9fab421b8a93",
+    "name": "SonarCloud Issues Organizations API",
+    "description": "The SonarCloud API provides HTTP endpoints for programmatic interaction with SonarCloud \u2014 Sonar's cloud-based code quality and security analysis service. It enables management of organizations, projects, quality gates, issues, and analysis integrations with GitHub, GitLab, Bitbucket, and Azure DevOps. Token-based authentication is required for all endpoints.\n\nContact Support:\n Name: SonarSource",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:58:52.000Z",
+    "updatedAt": "2026-07-28T02:58:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-053a63a6-0084-4d9a-9d56-9fab421b8a93"
+  },
+  "item": [
+    {
+      "name": "organizations",
+      "item": [
+        {
+          "name": "search",
+          "item": [
+            {
+              "name": "Search Organizations",
+              "id": "1974d0c1-b2df-4b8e-8599-bd937266bed3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/organizations/search?q=<string>&p=1&ps=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organizations",
+                    "search"
+                  ],
+                  "query": [
+                    {
+                      "description": "Search query to filter organizations by name or key",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number",
+                      "key": "p",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Page size (max 500)",
+                      "key": "ps",
+                      "value": "25"
+                    }
+                  ]
+                },
+                "description": "Search for organizations on SonarCloud. Organizations are the top-level entity in SonarCloud, grouping projects from a DevOps platform account (GitHub, GitLab, Bitbucket, or Azure DevOps)."
+              },
+              "response": [
+                {
+                  "id": "f9e15d02-8ee5-41a4-b36e-ea4d6ff69ac2",
+                  "name": "Successfully retrieved organizations",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/search?q=<string>&p=1&ps=25",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        "search"
+                      ],
+                      "query": [
+                        {
+                          "description": "Search query to filter organizations by name or key",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Page number",
+                          "key": "p",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Page size (max 500)",
+                          "key": "ps",
+                          "value": "25"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"paging\": {\n    \"pageIndex\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"total\": \"<integer>\"\n  },\n  \"organizations\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"guarded\": \"<boolean>\",\n      \"visibility\": \"public\",\n      \"subscription\": \"FREE\",\n      \"alm\": {\n        \"key\": \"azure\",\n        \"url\": \"<string>\"\n      }\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"guarded\": \"<boolean>\",\n      \"visibility\": \"public\",\n      \"subscription\": \"FREE\",\n      \"alm\": {\n        \"key\": \"github\",\n        \"url\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:58:52.000Z",
+                  "updatedAt": "2026-07-28T02:58:52.000Z",
+                  "uid": "35240-f9e15d02-8ee5-41a4-b36e-ea4d6ff69ac2"
+                },
+                {
+                  "id": "a81d68d9-27f0-4059-8aeb-521f95b501fe",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/search?q=<string>&p=1&ps=25",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        "search"
+                      ],
+                      "query": [
+                        {
+                          "description": "Search query to filter organizations by name or key",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Page number",
+                          "key": "p",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Page size (max 500)",
+                          "key": "ps",
+                          "value": "25"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:58:52.000Z",
+                  "updatedAt": "2026-07-28T02:58:52.000Z",
+                  "uid": "35240-a81d68d9-27f0-4059-8aeb-521f95b501fe"
+                }
+              ],
+              "createdAt": "2026-07-28T02:58:52.000Z",
+              "updatedAt": "2026-07-28T02:58:52.000Z",
+              "uid": "35240-1974d0c1-b2df-4b8e-8599-bd937266bed3"
+            }
+          ],
+          "id": "2d6bfb62-bd7e-4b09-9fee-a705509795aa",
+          "createdAt": "2026-07-28T02:58:52.000Z",
+          "updatedAt": "2026-07-28T02:58:52.000Z",
+          "uid": "35240-2d6bfb62-bd7e-4b09-9fee-a705509795aa"
+        }
+      ],
+      "id": "b069031b-96b9-4ff8-ba64-f977c30a0bff",
+      "createdAt": "2026-07-28T02:58:52.000Z",
+      "updatedAt": "2026-07-28T02:58:52.000Z",
+      "uid": "35240-b069031b-96b9-4ff8-ba64-f977c30a0bff"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://sonarcloud.io/api"
+    }
+  ]
+}

@@ -1,0 +1,298 @@
+{
+  "info": {
+    "_postman_id": "c04011dd-d73e-4441-96a8-6d1806c22ac1",
+    "name": "SonarCloud Issues API",
+    "description": "The SonarCloud API provides HTTP endpoints for programmatic interaction with SonarCloud \u2014 Sonar's cloud-based code quality and security analysis service. It enables management of organizations, projects, quality gates, issues, and analysis integrations with GitHub, GitLab, Bitbucket, and Azure DevOps. Token-based authentication is required for all endpoints.\n\nContact Support:\n Name: SonarSource",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:58:48.000Z",
+    "updatedAt": "2026-07-28T02:58:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c04011dd-d73e-4441-96a8-6d1806c22ac1"
+  },
+  "item": [
+    {
+      "name": "issues",
+      "item": [
+        {
+          "name": "search",
+          "item": [
+            {
+              "name": "Search Issues",
+              "id": "b40df836-6e21-4f3c-91cd-bdf2d798585c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/issues/search?organization=<string>&componentKeys=<string>&severities=<string>&types=<string>&statuses=<string>&resolved=<boolean>&rules=<string>&p=1&ps=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "issues",
+                    "search"
+                  ],
+                  "query": [
+                    {
+                      "description": "Organization key to scope the search",
+                      "key": "organization",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated component keys to scope the search",
+                      "key": "componentKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated severities",
+                      "key": "severities",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated issue types",
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated statuses",
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by resolution status",
+                      "key": "resolved",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Comma-separated rule keys",
+                      "key": "rules",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number",
+                      "key": "p",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Page size",
+                      "key": "ps",
+                      "value": "100"
+                    }
+                  ]
+                },
+                "description": "Search for code issues across projects in an organization. Supports filtering by severity, type, status, assignee, rule, language, component, and date ranges."
+              },
+              "response": [
+                {
+                  "id": "3541c2a1-f68e-4541-9e46-7d12d7765d74",
+                  "name": "Successfully retrieved issues",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/issues/search?organization=<string>&componentKeys=<string>&severities=<string>&types=<string>&statuses=<string>&resolved=<boolean>&rules=<string>&p=1&ps=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "issues",
+                        "search"
+                      ],
+                      "query": [
+                        {
+                          "description": "Organization key to scope the search",
+                          "key": "organization",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated component keys to scope the search",
+                          "key": "componentKeys",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated severities",
+                          "key": "severities",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated issue types",
+                          "key": "types",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated statuses",
+                          "key": "statuses",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by resolution status",
+                          "key": "resolved",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Comma-separated rule keys",
+                          "key": "rules",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Page number",
+                          "key": "p",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Page size",
+                          "key": "ps",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"paging\": {\n    \"pageIndex\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"total\": \"<integer>\"\n  },\n  \"issues\": [\n    {\n      \"key\": \"<string>\",\n      \"rule\": \"<string>\",\n      \"severity\": \"MINOR\",\n      \"component\": \"<string>\",\n      \"project\": \"<string>\",\n      \"organization\": \"<string>\",\n      \"line\": \"<integer>\",\n      \"status\": \"CONFIRMED\",\n      \"resolution\": \"FALSE-POSITIVE\",\n      \"type\": \"CODE_SMELL\",\n      \"message\": \"<string>\",\n      \"author\": \"<string>\",\n      \"assignee\": \"<string>\",\n      \"creationDate\": \"<dateTime>\",\n      \"updateDate\": \"<dateTime>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"effort\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"rule\": \"<string>\",\n      \"severity\": \"CRITICAL\",\n      \"component\": \"<string>\",\n      \"project\": \"<string>\",\n      \"organization\": \"<string>\",\n      \"line\": \"<integer>\",\n      \"status\": \"CONFIRMED\",\n      \"resolution\": \"FIXED\",\n      \"type\": \"VULNERABILITY\",\n      \"message\": \"<string>\",\n      \"author\": \"<string>\",\n      \"assignee\": \"<string>\",\n      \"creationDate\": \"<dateTime>\",\n      \"updateDate\": \"<dateTime>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"effort\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:58:48.000Z",
+                  "updatedAt": "2026-07-28T02:58:48.000Z",
+                  "uid": "35240-3541c2a1-f68e-4541-9e46-7d12d7765d74"
+                },
+                {
+                  "id": "30e71ca0-7d66-4646-9234-09000f9f7f9b",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/issues/search?organization=<string>&componentKeys=<string>&severities=<string>&types=<string>&statuses=<string>&resolved=<boolean>&rules=<string>&p=1&ps=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "issues",
+                        "search"
+                      ],
+                      "query": [
+                        {
+                          "description": "Organization key to scope the search",
+                          "key": "organization",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated component keys to scope the search",
+                          "key": "componentKeys",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated severities",
+                          "key": "severities",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated issue types",
+                          "key": "types",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated statuses",
+                          "key": "statuses",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by resolution status",
+                          "key": "resolved",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Comma-separated rule keys",
+                          "key": "rules",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Page number",
+                          "key": "p",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Page size",
+                          "key": "ps",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:58:48.000Z",
+                  "updatedAt": "2026-07-28T02:58:48.000Z",
+                  "uid": "35240-30e71ca0-7d66-4646-9234-09000f9f7f9b"
+                }
+              ],
+              "createdAt": "2026-07-28T02:58:48.000Z",
+              "updatedAt": "2026-07-28T02:58:48.000Z",
+              "uid": "35240-b40df836-6e21-4f3c-91cd-bdf2d798585c"
+            }
+          ],
+          "id": "e0c8b5c2-1d7b-4b38-b42f-e9ef33ebc0b5",
+          "createdAt": "2026-07-28T02:58:48.000Z",
+          "updatedAt": "2026-07-28T02:58:48.000Z",
+          "uid": "35240-e0c8b5c2-1d7b-4b38-b42f-e9ef33ebc0b5"
+        }
+      ],
+      "id": "f0d61c58-de08-4f3f-a7af-1d5bfd21b9a4",
+      "createdAt": "2026-07-28T02:58:48.000Z",
+      "updatedAt": "2026-07-28T02:58:48.000Z",
+      "uid": "35240-f0d61c58-de08-4f3f-a7af-1d5bfd21b9a4"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://sonarcloud.io/api"
+    }
+  ]
+}

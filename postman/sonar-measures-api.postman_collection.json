@@ -1,0 +1,223 @@
+{
+  "info": {
+    "_postman_id": "19df9e54-0f3e-4fdb-89d1-298642303987",
+    "name": "SonarCloud Issues Measures API",
+    "description": "The SonarCloud API provides HTTP endpoints for programmatic interaction with SonarCloud \u2014 Sonar's cloud-based code quality and security analysis service. It enables management of organizations, projects, quality gates, issues, and analysis integrations with GitHub, GitLab, Bitbucket, and Azure DevOps. Token-based authentication is required for all endpoints.\n\nContact Support:\n Name: SonarSource",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:58:51.000Z",
+    "updatedAt": "2026-07-28T02:58:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-19df9e54-0f3e-4fdb-89d1-298642303987"
+  },
+  "item": [
+    {
+      "name": "measures",
+      "item": [
+        {
+          "name": "component",
+          "item": [
+            {
+              "name": "Get Component Measures",
+              "id": "b270733b-838e-475c-b00c-861c116df5b1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/measures/component?component=<string>&metricKeys=<string>&branch=<string>&pullRequest=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "measures",
+                    "component"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Component key",
+                      "key": "component",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Comma-separated metric keys",
+                      "key": "metricKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Branch name",
+                      "key": "branch",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pull request number",
+                      "key": "pullRequest",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Get metric measures for a component. Returns values for requested metric keys including coverage, bugs, vulnerabilities, code smells, duplications, technical debt, and ratings."
+              },
+              "response": [
+                {
+                  "id": "47b5786d-4062-428e-862a-e47c0c0e500b",
+                  "name": "Successfully retrieved component measures",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/measures/component?component=<string>&metricKeys=<string>&branch=<string>&pullRequest=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "measures",
+                        "component"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Component key",
+                          "key": "component",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Comma-separated metric keys",
+                          "key": "metricKeys",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Branch name",
+                          "key": "branch",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pull request number",
+                          "key": "pullRequest",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"component\": {\n    \"key\": \"<string>\",\n    \"name\": \"<string>\",\n    \"organization\": \"<string>\",\n    \"measures\": [\n      {\n        \"metric\": \"<string>\",\n        \"value\": \"<string>\",\n        \"bestValue\": \"<boolean>\"\n      },\n      {\n        \"metric\": \"<string>\",\n        \"value\": \"<string>\",\n        \"bestValue\": \"<boolean>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:58:51.000Z",
+                  "updatedAt": "2026-07-28T02:58:51.000Z",
+                  "uid": "35240-47b5786d-4062-428e-862a-e47c0c0e500b"
+                },
+                {
+                  "id": "6e5a85bb-bc41-4dd2-a297-1e7cd4e049d0",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/measures/component?component=<string>&metricKeys=<string>&branch=<string>&pullRequest=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "measures",
+                        "component"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Component key",
+                          "key": "component",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Comma-separated metric keys",
+                          "key": "metricKeys",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Branch name",
+                          "key": "branch",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pull request number",
+                          "key": "pullRequest",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:58:51.000Z",
+                  "updatedAt": "2026-07-28T02:58:51.000Z",
+                  "uid": "35240-6e5a85bb-bc41-4dd2-a297-1e7cd4e049d0"
+                }
+              ],
+              "createdAt": "2026-07-28T02:58:51.000Z",
+              "updatedAt": "2026-07-28T02:58:51.000Z",
+              "uid": "35240-b270733b-838e-475c-b00c-861c116df5b1"
+            }
+          ],
+          "id": "3b54fe64-8c49-4a27-9a33-62de19b49744",
+          "createdAt": "2026-07-28T02:58:51.000Z",
+          "updatedAt": "2026-07-28T02:58:51.000Z",
+          "uid": "35240-3b54fe64-8c49-4a27-9a33-62de19b49744"
+        }
+      ],
+      "id": "cfaede74-a9bb-4143-8b80-00b1a93efb92",
+      "createdAt": "2026-07-28T02:58:51.000Z",
+      "updatedAt": "2026-07-28T02:58:51.000Z",
+      "uid": "35240-cfaede74-a9bb-4143-8b80-00b1a93efb92"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://sonarcloud.io/api"
+    }
+  ]
+}
