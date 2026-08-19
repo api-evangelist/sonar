@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SonarCloud Issues Projects API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sonarcloud.io/api/projects/search",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "query",
+                "description": "Organization key"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query for project name or key"
+              },
+              {
+                "name": "qualitygate",
+                "value": "",
+                "type": "query",
+                "description": "Filter by quality gate name"
+              },
+              {
+                "name": "p",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "ps",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Search for projects within an organization on SonarCloud. Returns project details including last analysis date, quality gate status, and language breakdown."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,289 @@
+{
+  "item": [
+    {
+      "id": "ead4c982-7910-4820-a0b9-8842e49420ee",
+      "name": "Issues",
+      "description": {
+        "content": "Code issue search and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0c77e228-d903-4d23-a5e4-2bb313aab9a2",
+          "name": "Search Issues",
+          "request": {
+            "name": "Search Issues",
+            "description": {
+              "content": "Search for code issues across projects in an organization. Supports filtering by severity, type, status, assignee, rule, language, component, and date ranges.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "issues",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "organization",
+                  "value": "<string>",
+                  "description": "Organization key to scope the search"
+                },
+                {
+                  "disabled": false,
+                  "key": "componentKeys",
+                  "value": "<string>",
+                  "description": "Comma-separated component keys to scope the search"
+                },
+                {
+                  "disabled": false,
+                  "key": "severities",
+                  "value": "<string>",
+                  "description": "Comma-separated severities"
+                },
+                {
+                  "disabled": false,
+                  "key": "types",
+                  "value": "<string>",
+                  "description": "Comma-separated issue types"
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<string>",
+                  "description": "Comma-separated statuses"
+                },
+                {
+                  "disabled": false,
+                  "key": "resolved",
+                  "value": "<boolean>",
+                  "description": "Filter by resolution status"
+                },
+                {
+                  "disabled": false,
+                  "key": "rules",
+                  "value": "<string>",
+                  "description": "Comma-separated rule keys"
+                },
+                {
+                  "disabled": false,
+                  "key": "p",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "ps",
+                  "value": "100",
+                  "description": "Page size"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c20fb47c-042f-4c2d-878d-18f30deaf096",
+              "name": "Successfully retrieved issues",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "componentKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severities",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resolved",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "rules",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "p",
+                      "value": "1"
+                    },
+                    {
+                      "key": "ps",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"paging\": {\n    \"pageIndex\": 5676,\n    \"pageSize\": 6173,\n    \"total\": 736\n  },\n  \"issues\": [\n    {\n      \"key\": \"string\",\n      \"rule\": \"string\",\n      \"severity\": \"CRITICAL\",\n      \"component\": \"string\",\n      \"project\": \"string\",\n      \"organization\": \"string\",\n      \"line\": 1784,\n      \"status\": \"CONFIRMED\",\n      \"resolution\": \"FALSE-POSITIVE\",\n      \"type\": \"BUG\",\n      \"message\": \"string\",\n      \"author\": \"string\",\n      \"assignee\": \"string\",\n      \"creationDate\": \"1985-08-10T22:27:35.022Z\",\n      \"updateDate\": \"2003-05-25T11:55:25.420Z\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"effort\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"rule\": \"string\",\n      \"severity\": \"CRITICAL\",\n      \"component\": \"string\",\n      \"project\": \"string\",\n      \"organization\": \"string\",\n      \"line\": 8117,\n      \"status\": \"OPEN\",\n      \"resolution\": \"FIXED\",\n      \"type\": \"SECURITY_HOTSPOT\",\n      \"message\": \"string\",\n      \"author\": \"string\",\n      \"assignee\": \"string\",\n      \"creationDate\": \"2019-03-23T19:40:04.218Z\",\n      \"updateDate\": \"2015-12-29T23:04:42.099Z\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"effort\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af50e03a-f45a-47c3-a214-5f8dd7c42a50",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "componentKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severities",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resolved",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "rules",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "p",
+                      "value": "1"
+                    },
+                    {
+                      "key": "ps",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sonarcloud.io/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "597cddd2-8eac-4584-b672-1e660abd5871",
+    "name": "SonarCloud Issues API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The SonarCloud API provides HTTP endpoints for programmatic interaction with SonarCloud — Sonar's cloud-based code quality and security analysis service. It enables management of organizations, projects, quality gates, issues, and analysis integrations with GitHub, GitLab, Bitbucket, and Azure DevOps. Token-based authentication is required for all endpoints.\n\nContact Support:\n Name: SonarSource",
+      "type": "text/plain"
+    }
+  }
+}

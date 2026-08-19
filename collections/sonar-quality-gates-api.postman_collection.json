@@ -1,0 +1,364 @@
+{
+  "item": [
+    {
+      "id": "70bb2bb0-fd16-40c9-ac0f-50d8ba9f726d",
+      "name": "Quality Gates",
+      "description": {
+        "content": "Quality gate configuration and status",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fffe2403-1a09-4dea-8992-e8c776c56c38",
+          "name": "List Quality Gates",
+          "request": {
+            "name": "List Quality Gates",
+            "description": {
+              "content": "List all quality gates for an organization. Quality gates define the conditions a project must meet to pass the clean code standard.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "qualitygates",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "organization",
+                  "value": "<string>",
+                  "description": "(Required) Organization key"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "25733a9d-e9d4-41c6-a921-d20287a91bb7",
+              "name": "Successfully retrieved quality gates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "qualitygates",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"qualitygates\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"isDefault\": true,\n      \"isBuiltIn\": true,\n      \"conditions\": [\n        {\n          \"id\": \"string\",\n          \"metric\": \"string\",\n          \"op\": \"LT\",\n          \"error\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"metric\": \"string\",\n          \"op\": \"LT\",\n          \"error\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"isDefault\": true,\n      \"isBuiltIn\": true,\n      \"conditions\": [\n        {\n          \"id\": \"string\",\n          \"metric\": \"string\",\n          \"op\": \"GT\",\n          \"error\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"metric\": \"string\",\n          \"op\": \"LT\",\n          \"error\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"default\": 6850\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf9852ae-9728-4381-9489-5afa20381ec9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "qualitygates",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "459ae052-31f7-4d5d-b7c0-55c4e36d627e",
+          "name": "Get Quality Gate Status",
+          "request": {
+            "name": "Get Quality Gate Status",
+            "description": {
+              "content": "Get the quality gate status for a project or pull request analysis. Returns overall OK/ERROR status and individual condition results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "qualitygates",
+                "project_status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "projectKey",
+                  "value": "<string>",
+                  "description": "Project key"
+                },
+                {
+                  "disabled": false,
+                  "key": "analysisId",
+                  "value": "<string>",
+                  "description": "Analysis ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "branch",
+                  "value": "<string>",
+                  "description": "Branch name"
+                },
+                {
+                  "disabled": false,
+                  "key": "pullRequest",
+                  "value": "<string>",
+                  "description": "Pull request number"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d495e5cd-8545-4866-bb87-284c8b5e472b",
+              "name": "Successfully retrieved quality gate status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "qualitygates",
+                    "project_status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "analysisId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "branch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pullRequest",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"projectStatus\": {\n    \"status\": \"ERROR\",\n    \"conditions\": [\n      {\n        \"status\": \"OK\",\n        \"metricKey\": \"string\",\n        \"comparator\": \"string\",\n        \"errorThreshold\": \"string\",\n        \"actualValue\": \"string\"\n      },\n      {\n        \"status\": \"NO_VALUE\",\n        \"metricKey\": \"string\",\n        \"comparator\": \"string\",\n        \"errorThreshold\": \"string\",\n        \"actualValue\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f729138d-5afb-42f2-803a-5978a1332d88",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "qualitygates",
+                    "project_status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "analysisId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "branch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pullRequest",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sonarcloud.io/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fe4607e5-0b31-4506-82db-4970f2f7deba",
+    "name": "SonarCloud Issues Quality Gates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The SonarCloud API provides HTTP endpoints for programmatic interaction with SonarCloud — Sonar's cloud-based code quality and security analysis service. It enables management of organizations, projects, quality gates, issues, and analysis integrations with GitHub, GitLab, Bitbucket, and Azure DevOps. Token-based authentication is required for all endpoints.\n\nContact Support:\n Name: SonarSource",
+      "type": "text/plain"
+    }
+  }
+}

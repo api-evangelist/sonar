@@ -1,0 +1,219 @@
+{
+  "item": [
+    {
+      "id": "277a43ec-c34d-4be6-b968-eb23a82b42e9",
+      "name": "Measures",
+      "description": {
+        "content": "Component metrics and measurement data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "df6ad1e5-cc59-4289-9360-d213c1fa7695",
+          "name": "Get Component Measures",
+          "request": {
+            "name": "Get Component Measures",
+            "description": {
+              "content": "Get metric measures for a component. Returns values for requested metric keys including coverage, bugs, vulnerabilities, code smells, duplications, technical debt, and ratings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "measures",
+                "component"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "component",
+                  "value": "<string>",
+                  "description": "(Required) Component key"
+                },
+                {
+                  "disabled": false,
+                  "key": "metricKeys",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated metric keys"
+                },
+                {
+                  "disabled": false,
+                  "key": "branch",
+                  "value": "<string>",
+                  "description": "Branch name"
+                },
+                {
+                  "disabled": false,
+                  "key": "pullRequest",
+                  "value": "<string>",
+                  "description": "Pull request number"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e6e0f60d-728d-4d8e-9e70-a3d6d1e63690",
+              "name": "Successfully retrieved component measures",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "measures",
+                    "component"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "component",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "metricKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "branch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pullRequest",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"component\": {\n    \"key\": \"string\",\n    \"name\": \"string\",\n    \"organization\": \"string\",\n    \"measures\": [\n      {\n        \"metric\": \"string\",\n        \"value\": \"string\",\n        \"bestValue\": true\n      },\n      {\n        \"metric\": \"string\",\n        \"value\": \"string\",\n        \"bestValue\": false\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f2b0575-1d0f-4f71-9126-41ec3611dc93",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "measures",
+                    "component"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "component",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "metricKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "branch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pullRequest",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sonarcloud.io/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e042a764-f289-426d-941c-19d9076ce2ef",
+    "name": "SonarCloud Issues Measures API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The SonarCloud API provides HTTP endpoints for programmatic interaction with SonarCloud — Sonar's cloud-based code quality and security analysis service. It enables management of organizations, projects, quality gates, issues, and analysis integrations with GitHub, GitLab, Bitbucket, and Azure DevOps. Token-based authentication is required for all endpoints.\n\nContact Support:\n Name: SonarSource",
+      "type": "text/plain"
+    }
+  }
+}

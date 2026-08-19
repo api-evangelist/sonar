@@ -1,0 +1,233 @@
+{
+  "item": [
+    {
+      "id": "9b2145a7-b096-4bca-b37b-ee3713a85560",
+      "name": "Projects",
+      "description": {
+        "content": "Project search and management within organizations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dd1c8bc2-df99-4191-9ec6-2e1549c12a92",
+          "name": "Search Projects",
+          "request": {
+            "name": "Search Projects",
+            "description": {
+              "content": "Search for projects within an organization on SonarCloud. Returns project details including last analysis date, quality gate status, and language breakdown.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "organization",
+                  "value": "<string>",
+                  "description": "(Required) Organization key"
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Search query for project name or key"
+                },
+                {
+                  "disabled": false,
+                  "key": "qualitygate",
+                  "value": "<string>",
+                  "description": "Filter by quality gate name"
+                },
+                {
+                  "disabled": false,
+                  "key": "p",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "ps",
+                  "value": "100",
+                  "description": "Page size"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1dec38c3-60a8-430c-8781-4fb4ab8227c9",
+              "name": "Successfully retrieved projects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "qualitygate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "p",
+                      "value": "1"
+                    },
+                    {
+                      "key": "ps",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"paging\": {\n    \"pageIndex\": 1957,\n    \"pageSize\": 1960,\n    \"total\": 4526\n  },\n  \"components\": [\n    {\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"qualifier\": \"VW\",\n      \"visibility\": \"public\",\n      \"lastAnalysisDate\": \"2011-05-03T15:20:46.004Z\",\n      \"revision\": \"string\",\n      \"organization\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"qualifier\": \"VW\",\n      \"visibility\": \"public\",\n      \"lastAnalysisDate\": \"1994-09-05T11:09:22.348Z\",\n      \"revision\": \"string\",\n      \"organization\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b26d99b3-009f-4c87-a957-cc8c2480f21d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "qualitygate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "p",
+                      "value": "1"
+                    },
+                    {
+                      "key": "ps",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sonarcloud.io/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7b5e2523-77cf-4960-ba5e-ddd25748a61e",
+    "name": "SonarCloud Issues Projects API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The SonarCloud API provides HTTP endpoints for programmatic interaction with SonarCloud — Sonar's cloud-based code quality and security analysis service. It enables management of organizations, projects, quality gates, issues, and analysis integrations with GitHub, GitLab, Bitbucket, and Azure DevOps. Token-based authentication is required for all endpoints.\n\nContact Support:\n Name: SonarSource",
+      "type": "text/plain"
+    }
+  }
+}

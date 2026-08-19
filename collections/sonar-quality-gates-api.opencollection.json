@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SonarCloud Issues Quality Gates API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Quality Gates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Quality Gates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sonarcloud.io/api/qualitygates/list",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "query",
+                "description": "Organization key"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List all quality gates for an organization. Quality gates define the conditions a project must meet to pass the clean code standard."
+        },
+        {
+          "info": {
+            "name": "Get Quality Gate Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sonarcloud.io/api/qualitygates/project_status",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "query",
+                "description": "Project key"
+              },
+              {
+                "name": "analysisId",
+                "value": "",
+                "type": "query",
+                "description": "Analysis ID"
+              },
+              {
+                "name": "branch",
+                "value": "",
+                "type": "query",
+                "description": "Branch name"
+              },
+              {
+                "name": "pullRequest",
+                "value": "",
+                "type": "query",
+                "description": "Pull request number"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the quality gate status for a project or pull request analysis. Returns overall OK/ERROR status and individual condition results."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

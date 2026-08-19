@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SonarCloud Issues Organizations API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sonarcloud.io/api/organizations/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query to filter organizations by name or key"
+              },
+              {
+                "name": "p",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "ps",
+                "value": "",
+                "type": "query",
+                "description": "Page size (max 500)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Search for organizations on SonarCloud. Organizations are the top-level entity in SonarCloud, grouping projects from a DevOps platform account (GitHub, GitLab, Bitbucket, or Azure DevOps)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

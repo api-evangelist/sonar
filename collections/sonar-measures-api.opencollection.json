@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SonarCloud Issues Measures API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Measures",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Component Measures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sonarcloud.io/api/measures/component",
+            "params": [
+              {
+                "name": "component",
+                "value": "",
+                "type": "query",
+                "description": "Component key"
+              },
+              {
+                "name": "metricKeys",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated metric keys"
+              },
+              {
+                "name": "branch",
+                "value": "",
+                "type": "query",
+                "description": "Branch name"
+              },
+              {
+                "name": "pullRequest",
+                "value": "",
+                "type": "query",
+                "description": "Pull request number"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get metric measures for a component. Returns values for requested metric keys including coverage, bugs, vulnerabilities, code smells, duplications, technical debt, and ratings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
