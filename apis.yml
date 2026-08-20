@@ -115,6 +115,8 @@ apis:
   description: Organization management and discovery
   humanURL: https://docs.sonarsource.com/sonarqube-server/latest/extension-guide/web-api/
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -144,6 +146,8 @@ apis:
   description: Project search and management within organizations
   humanURL: https://docs.sonarsource.com/sonarqube-server/latest/extension-guide/web-api/
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
