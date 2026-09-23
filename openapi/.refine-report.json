@@ -1,12 +1,7 @@
 {
   "provider": "sonar",
   "sources": [
-    "sonar-issues-api-openapi.yml",
-    "sonar-measures-api-openapi.yml",
-    "sonar-organizations-api-openapi.yml",
-    "sonar-projects-api-openapi.yml",
-    "sonar-quality-gates-api-openapi.yml",
-    "sonar-user-tokens-api-openapi.yml"
+    "_original/sonar-sonarcloud-api-openapi.yml"
   ],
   "outputs": [
     "sonar-issues-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "sonar-sonarcloud-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "sonar-issues-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sonar-measures-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sonar-organizations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sonar-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sonar-quality-gates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sonar-user-tokens-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
