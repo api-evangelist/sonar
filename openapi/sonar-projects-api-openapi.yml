@@ -65,15 +65,15 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    Paging:
+    ProjectSearchResponse:
       type: object
       properties:
-        pageIndex:
-          type: integer
-        pageSize:
-          type: integer
-        total:
-          type: integer
+        paging:
+          $ref: '#/components/schemas/Paging'
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
     Project:
       type: object
       properties:
@@ -102,15 +102,15 @@ components:
         organization:
           type: string
           description: Organization key
-    ProjectSearchResponse:
+    Paging:
       type: object
       properties:
-        paging:
-          $ref: '#/components/schemas/Paging'
-        components:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
+        pageIndex:
+          type: integer
+        pageSize:
+          type: integer
+        total:
+          type: integer
   securitySchemes:
     bearerAuth:
       type: http
