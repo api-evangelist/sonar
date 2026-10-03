@@ -71,19 +71,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    UserToken:
-      type: object
-      properties:
-        login:
-          type: string
-        name:
-          type: string
-        token:
-          type: string
-          description: Token value — only returned once at generation time
-        createdAt:
-          type: string
-          format: date-time
     UserTokenSearchResponse:
       type: object
       properties:
@@ -99,6 +86,19 @@ components:
               createdAt:
                 type: string
                 format: date-time
+    UserToken:
+      type: object
+      properties:
+        login:
+          type: string
+        name:
+          type: string
+        token:
+          type: string
+          description: Token value — only returned once at generation time
+        createdAt:
+          type: string
+          format: date-time
   securitySchemes:
     bearerAuth:
       type: http

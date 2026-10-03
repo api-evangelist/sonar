@@ -54,24 +54,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    OrganizationSearchResponse:
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/Paging'
-        organizations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Organization'
-    Paging:
-      type: object
-      properties:
-        pageIndex:
-          type: integer
-        pageSize:
-          type: integer
-        total:
-          type: integer
     Organization:
       type: object
       properties:
@@ -107,6 +89,24 @@ components:
             url:
               type: string
           description: Connected DevOps platform
+    Paging:
+      type: object
+      properties:
+        pageIndex:
+          type: integer
+        pageSize:
+          type: integer
+        total:
+          type: integer
+    OrganizationSearchResponse:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/Paging'
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization'
   securitySchemes:
     bearerAuth:
       type: http

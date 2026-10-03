@@ -65,15 +65,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    ProjectSearchResponse:
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/Paging'
-        components:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
     Project:
       type: object
       properties:
@@ -102,6 +93,15 @@ components:
         organization:
           type: string
           description: Organization key
+    ProjectSearchResponse:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/Paging'
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
     Paging:
       type: object
       properties:
