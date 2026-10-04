@@ -84,6 +84,24 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    IssueSearchResponse:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/Paging'
+        issues:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+    Paging:
+      type: object
+      properties:
+        pageIndex:
+          type: integer
+        pageSize:
+          type: integer
+        total:
+          type: integer
     Issue:
       type: object
       properties:
@@ -147,24 +165,6 @@ components:
             type: string
         effort:
           type: string
-    IssueSearchResponse:
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/Paging'
-        issues:
-          type: array
-          items:
-            $ref: '#/components/schemas/Issue'
-    Paging:
-      type: object
-      properties:
-        pageIndex:
-          type: integer
-        pageSize:
-          type: integer
-        total:
-          type: integer
   securitySchemes:
     bearerAuth:
       type: http
