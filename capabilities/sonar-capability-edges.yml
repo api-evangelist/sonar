@@ -1,0 +1,44 @@
+slug: sonar
+provider: Sonar
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Issues
+  spec_file: sonar-issues-api-openapi.yml
+  capability_id: BC-4200.50
+  capability_id_l1: BC-4200
+  capability_name: Software Quality Engineering
+  confidence: 0.8
+  evidence: 'GET /issues/search  searchIssues  Search Issues; schemas: Issue, IssueSearchResponse — "code
+    quality and security analysis service"'
+  reason: Issues here are static-analysis findings/defects on source code, which is defect management
+    within software quality engineering, not customer complaints or IT incidents.
+- tag: Quality Gates
+  spec_file: sonar-quality-gates-api-openapi.yml
+  capability_id: BC-4200.50
+  capability_id_l1: BC-4200
+  capability_name: Software Quality Engineering
+  confidence: 0.75
+  evidence: 'GET /qualitygates/list  listQualityGates; GET /qualitygates/project_status  getQualityGateStatus;
+    schemas: QualityGateStatus'
+  reason: Quality gates define pass/fail criteria on code analysis results, a software quality engineering
+    control rather than enterprise quality management (ISO/NCR).
+- tag: Measures
+  spec_file: sonar-measures-api-openapi.yml
+  capability_id: BC-4200.50
+  capability_id_l1: BC-4200
+  capability_name: Software Quality Engineering
+  confidence: 0.7
+  evidence: GET /measures/component  getComponentMeasures  Get Component Measures; ComponentMeasuresResponse
+  reason: Component measures are code quality metrics (coverage, duplications, maintainability) produced
+    by static analysis, i.e. software quality engineering telemetry rather than business KPIs.

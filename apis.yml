@@ -245,6 +245,9 @@ apis:
   - type: Examples
     url: examples/sonar-quality-gate-status-example.json
 common:
+  - type: CapabilityMap
+    url: capabilities/sonar-capability-edges.yml
+    name: Sonar Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/sonar/overview
   - type: AgenticAccess
