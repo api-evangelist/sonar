@@ -245,6 +245,12 @@ apis:
   - type: Examples
     url: examples/sonar-quality-gate-status-example.json
 common:
+  - type: Plans
+    url: plans/sonar-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/sonar-rate-limits.yml
+  - type: FinOps
+    url: finops/sonar-finops.yml
   - type: CapabilityMap
     url: capabilities/sonar-capability-edges.yml
     name: Sonar Business Capability Map
