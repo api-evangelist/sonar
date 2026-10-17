@@ -54,15 +54,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    OrganizationSearchResponse:
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/Paging'
-        organizations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Organization'
     Paging:
       type: object
       properties:
@@ -72,6 +63,15 @@ components:
           type: integer
         total:
           type: integer
+    OrganizationSearchResponse:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/Paging'
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization'
     Organization:
       type: object
       properties:

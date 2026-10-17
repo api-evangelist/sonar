@@ -82,42 +82,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    QualityGate:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        isDefault:
-          type: boolean
-        isBuiltIn:
-          type: boolean
-        conditions:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              metric:
-                type: string
-              op:
-                type: string
-                enum:
-                - LT
-                - GT
-              error:
-                type: string
-    QualityGateListResponse:
-      type: object
-      properties:
-        qualitygates:
-          type: array
-          items:
-            $ref: '#/components/schemas/QualityGate'
-        default:
-          type: integer
     QualityGateStatus:
       type: object
       properties:
@@ -149,6 +113,42 @@ components:
                     type: string
                   actualValue:
                     type: string
+    QualityGateListResponse:
+      type: object
+      properties:
+        qualitygates:
+          type: array
+          items:
+            $ref: '#/components/schemas/QualityGate'
+        default:
+          type: integer
+    QualityGate:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        isDefault:
+          type: boolean
+        isBuiltIn:
+          type: boolean
+        conditions:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              metric:
+                type: string
+              op:
+                type: string
+                enum:
+                - LT
+                - GT
+              error:
+                type: string
   securitySchemes:
     bearerAuth:
       type: http
