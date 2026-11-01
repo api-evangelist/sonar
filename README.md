@@ -1,4 +1,4 @@
-# Sonar (sonar)
+# Sonar
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,97 +66,185 @@
 
 Sonar (SonarSource) provides code quality and security analysis tools for developers. Products include SonarQube (self-hosted), SonarCloud (cloud-hosted), and SonarLint (IDE plugin), offering continuous inspection through static code analysis across 30+ programming languages.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/sonar/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/sonar/refs/heads/main/apis.yml)
+**Areas:** CI/CD · Code Quality · Developer Tools · DevOps · Security · SonarCloud · SonarQube · Static Analysis
 
-## Tags
+## Sonar on APIs.io
 
-- CI/CD
-- Code Quality
-- DevOps
-- Security
-- SonarCloud
-- SonarQube
-- Static Analysis
+Everything profiled for Sonar is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/sonar/](https://apis.io/providers/sonar/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (7)
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-05-19
+- [SonarQube Web API](https://apis.io/apis/sonar/sonarqube-web-api/) — REST API for interacting with SonarQube Server, enabling management of projects, quality gates, issues, rules, users, and CI/CD integrations. Uses…
+- [Sonar Issues API](https://apis.io/apis/sonar/sonar-issues-api/) — Code issue search and management
+- [Sonar Measures API](https://apis.io/apis/sonar/sonar-measures-api/) — Component metrics and measurement data
+- [Sonar Organizations API](https://apis.io/apis/sonar/sonar-organizations-api/) — Organization management and discovery
+- [Sonar Projects API](https://apis.io/apis/sonar/sonar-projects-api/) — Project search and management within organizations
+- [Sonar Quality Gates API](https://apis.io/apis/sonar/sonar-quality-gates-api/) — Quality gate configuration and status
+- [Sonar User Tokens API](https://apis.io/apis/sonar/sonar-user-tokens-api/) — API token generation and management
 
-## APIs
+### Published properties
 
-### SonarQube Web API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-REST API for interacting with SonarQube Server, enabling management of projects, quality gates, issues, rules, users, and CI/CD integrations. Uses token-based authentication.
+#### MCP servers (2)
 
-- **Human URL:** [https://docs.sonarsource.com/sonarqube-server/latest/extension-guide/web-api/](https://docs.sonarsource.com/sonarqube-server/latest/extension-guide/web-api/)
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags
+- [MCP Server](https://apis.io/servers/sonar/mcp-server/)
+- [Moved to /providers/sonar/](https://apis.io/servers/sonar/sonar/)
 
-- Code Quality
-- DevOps
-- Security
-- SonarQube
-- Static Analysis
-- Technical Debt
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://docs.sonarsource.com/sonarqube-server/latest/extension-guide/web-api/)
-- [Reference](https://api-docs.sonarsource.com/)
-- [Authentication](https://docs.sonarsource.com/sonarqube-server/latest/extension-guide/web-api/)
-- [Postman Collection](collections/sonar-sonarcloud-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/sonar-sonarcloud-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Sonar Agentic Access](https://apis.io/agentic-access/sonar/sonar-agentic-access/)
 
-### SonarCloud API
+#### JSON Schema (2)
 
-Cloud-based code quality and security analysis API for analyzing code repositories from GitHub, GitLab, Bitbucket, and Azure DevOps organizations. Provides organization management, project analysis, issue tracking, quality gate monitoring, and metric retrieval.
+The data models the API reads and writes.
 
-- **Human URL:** [https://sonarcloud.io/web_api](https://sonarcloud.io/web_api)
+- [Issue](https://apis.io/schemas/sonar/sonar-issue/)
+- [Organization](https://apis.io/schemas/sonar/sonar-organization/)
 
-#### Tags
+#### JSON Structure (1)
 
-- Bitbucket
-- CI/CD
-- Cloud
-- Code Quality
-- GitHub
-- GitLab
-- SonarCloud
+Data models expressed in JSON Structure.
 
-#### Properties
+- [Sonar Sonarcloud Structure](https://apis.io/json-structure/sonar/sonar-sonarcloud-structure/)
 
-- [Documentation](https://sonarcloud.io/web_api)
-- [Getting Started](https://docs.sonarcloud.io/)
-- [Authentication](https://docs.sonarcloud.io/advanced-setup/api-authentication/)
-- [OpenAPI](openapi/sonar-sonarcloud-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/sonar-sonarcloud-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/sonar-sonarcloud-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/sonar-organization-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sonar-issue-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/sonar-sonarcloud-structure.json)
-- [JSON-LD](json-ld/sonar-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Spectral Rules](rules/sonar-rules.yml)
-- [Example](examples/sonar-search-organizations-example.json)
-- [Example](examples/sonar-quality-gate-status-example.json)
+#### JSON-LD (1)
 
-## Common Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [LinkedIn](https://www.linkedin.com/company/sonarsource)
+- [Sonar Context](https://apis.io/jsonld/sonar/sonar-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Sonar Vocabulary](https://apis.io/vocabularies/sonar/sonar-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Sonar Quality Gate Status Example](https://apis.io/examples/sonar/sonar-quality-gate-status-example/)
+- [Sonar Search Organizations Example](https://apis.io/examples/sonar/sonar-search-organizations-example/)
+
+#### Collections (13)
+
+Postman and Open Collection request collections.
+
+- [SonarCloud Issues API](https://apis.io/collections/sonar/open-sonar-issues-api/)
+- [SonarCloud Issues Measures API](https://apis.io/collections/sonar/open-sonar-measures-api/)
+- [SonarCloud Issues Organizations API](https://apis.io/collections/sonar/open-sonar-organizations-api/)
+- [SonarCloud Issues Projects API](https://apis.io/collections/sonar/open-sonar-projects-api/)
+- [SonarCloud Issues Quality Gates API](https://apis.io/collections/sonar/open-sonar-quality-gates-api/)
+- [SonarCloud API](https://apis.io/collections/sonar/open-sonar-sonarcloud-api/)
+- [SonarCloud Issues User Tokens API](https://apis.io/collections/sonar/open-sonar-user-tokens-api/)
+- [SonarCloud Issues API](https://apis.io/collections/sonar/postman-sonar-issues-api/)
+- [SonarCloud Issues Measures API](https://apis.io/collections/sonar/postman-sonar-measures-api/)
+- [SonarCloud Issues Organizations API](https://apis.io/collections/sonar/postman-sonar-organizations-api/)
+- [SonarCloud Issues Projects API](https://apis.io/collections/sonar/postman-sonar-projects-api/)
+- [SonarCloud Issues Quality Gates API](https://apis.io/collections/sonar/postman-sonar-quality-gates-api/)
+- [SonarCloud Issues User Tokens API](https://apis.io/collections/sonar/postman-sonar-user-tokens-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Sonar — jsonschema rules](https://apis.io/rules/sonar/sonar-jsonschema-spectral-rules/)
+- [Sonar API Rules](https://apis.io/rules/sonar/sonar-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Sonar Authentication](https://apis.io/security/sonar/sonar-authentication/)
+- [Sonar Domain Security](https://apis.io/security/sonar/sonar-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Sonar Plans Pricing](https://apis.io/plans/sonar/sonar-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Sonar Rate Limits](https://apis.io/rate-limits/sonar/sonar-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Sonar Finops](https://apis.io/finops/sonar/sonar-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.sonarsource.com/)
-- [Blog](https://www.sonarsource.com/blog/)
-- [GitHub Organization](https://github.com/SonarSource)
-- [Support](https://community.sonarsource.com/)
-- [Status Page](https://status.sonarsource.com/)
 - [Pricing](https://www.sonarsource.com/plans-and-pricing/)
-- [Terms of Service](https://www.sonarsource.com/terms/)
-- [Privacy Policy](https://www.sonarsource.com/privacy/)
-- [Vocabulary](vocabulary/sonar-vocabulary.yml)
-- [Integrations](https://www.sonarsource.com/integrations/)
-- [M C P Server](https://github.com/SonarSource/sonarqube-mcp-server)
-- [L L Ms Txt](https://docs.sonarsource.com/llms.txt)
+- [Support](https://community.sonarsource.com/)
+- [Blog](https://www.sonarsource.com/blog/)
+- [Terms of service](https://www.sonarsource.com/terms/)
+- [Privacy policy](https://www.sonarsource.com/privacy/)
+- [GitHub](https://github.com/SonarSource)
+- [Status](https://status.sonarsource.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 40.9** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.7 |
+| Contract quality | 64.3 |
+| Contract governance | 23.5 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 48.8 |
+| Access clarity | 18.4 |
+
+**Agent readiness 29.3** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/sonar/](https://apis.io/providers/sonar/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Sonar: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/sonar/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
